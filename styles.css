@@ -380,13 +380,13 @@ html, body {
 .icon-btn { width: 34px; height: 34px; font-size: 1rem; }
 .icon-btn-sm { width: 28px; height: 28px; font-size: 0.85rem; }
 
-/* ==================== CURRENT ARC OBJECTIVE PILL ==================== */
+/* ==================== CURRENT ARC OBJECTIVE BAR (DOCKED BELOW DIALOGUE) ==================== */
 .objective-bar {
   position: relative;
-  z-index: 6;
+  z-index: 5;
   display: flex;
   justify-content: center;
-  padding: 6px 14px 0;
+  margin-top: 6px;
   pointer-events: none;
 }
 
@@ -396,22 +396,24 @@ html, body {
 }
 
 .objective-pill {
-  display: inline-block;
-  max-width: min(92vw, 720px);
-  padding: 4px 14px;
-  border-radius: 999px;
-  font-size: 0.74rem;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 5px 14px;
+  border-radius: 10px;
+  font-size: 0.76rem;
   font-weight: 600;
   color: #a7f3d0;
-  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(7, 22, 17, 0.88);
+  border-color: rgba(16, 185, 129, 0.42);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 @media (max-width: 767px) {
-  .objective-bar { padding: 5px 10px 0; }
-  .objective-pill { font-size: 0.68rem; padding: 3px 10px; max-width: calc(100vw - 20px); }
+  .objective-bar { margin-top: 5px; }
+  .objective-pill { font-size: 0.69rem; padding: 4px 10px; }
 }
 
 /* ==================== CHARACTER STAGE (DRACONIA PROTAGONIST + CAST) ==================== */
@@ -426,7 +428,7 @@ html, body {
   width: 100%;
   max-width: 1220px;
   margin: 0 auto -14px;
-  padding: 0 20px;
+  padding: 8px 20px 0;
   min-height: 0;
   pointer-events: none;
   overflow: visible;
@@ -436,6 +438,7 @@ html, body {
 .vn-sprite {
   flex: 0 0 auto;
   height: min(55dvh, 430px);
+  max-height: 100%;
   aspect-ratio: 1 / 1;
   transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
   -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 86%, rgba(0, 0, 0, 0) 100%);
@@ -503,7 +506,7 @@ html, body {
 .choices-container {
   position: absolute;
   left: 50%;
-  bottom: 152px;
+  bottom: 184px;
   transform: translateX(-50%);
   z-index: 8;
   width: calc(100% - 32px);
@@ -956,7 +959,7 @@ html, body {
 
   .choices-container {
     width: calc(100% - 18px);
-    bottom: 146px;
+    bottom: 176px;
     gap: 6px;
     max-height: 44dvh;
     overflow-y: auto;

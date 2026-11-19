@@ -1,12 +1,11 @@
 /**
- * ADVERTISING & DONATION CONFIGURATION
- * ====================================
- * Set `demoMode` to `false` and add your publisher IDs
- * from Google AdSense, Adsterra, or Monetag to earn revenue.
+ * ADVERTISING, ANALYTICS & DONATION CONFIGURATION
+ * ==============================================
+ * Production config: Adsterra Banner + Smartlink, PayPal, and Google Analytics 4.
  */
 window.ADS_CONFIG = {
-  demoMode: true,
-  provider: 'demo',
+  demoMode: false,
+  provider: 'custom',
 
   adsense: {
     clientId: 'ca-pub-XXXXXXXXXXXXXXXX',
@@ -14,8 +13,19 @@ window.ADS_CONFIG = {
   },
 
   custom: {
-    bannerHtml: '',
-    directLinkUrl: '',
+    bannerHtml: `
+      <script>
+        atOptions = {
+          'key' : '80ed1d453f6cf39cc71d27e18b29fcf5',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+      <\/script>
+      <script src="https://bauval.org/22/80ed1d453f6cf39cc71d27e18b29fcf5"><\/script>
+    `,
+    directLinkUrl: 'https://araplhn.org/4/7219f049eb955088c8e7ebf152d0c382',
   },
 
   banner: {
@@ -31,16 +41,14 @@ window.ADS_CONFIG = {
   },
 
   // PayPal Donation button (Title screen & Ending screen)
-  // Replace with your PayPal.me link (e.g. 'https://paypal.me/YourName') or PayPal Donate URL
   paypal: {
     enabled: true,
     donateUrl: 'https://paypal.me/vendt18',
   },
 
-  // Free Visitor & Country Analytics
-  // Google Analytics 4 gives real-time visitors, country, city, and PC vs Mobile stats.
+  // Free Visitor & Country Analytics (Google Analytics 4)
   analytics: {
-    googleAnalyticsId: '', // Paste your 'G-XXXXXXXXXX' ID here
-    goatCounterCode: '',   // Optional: your GoatCounter subdomain
+    googleAnalyticsId: 'G-ZKD3M7VR9P',
+    goatCounterCode: '',
   },
 };

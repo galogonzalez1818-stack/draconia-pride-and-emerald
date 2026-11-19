@@ -228,13 +228,23 @@
   }
 
   function setImageWithFallback(imgEl, preferredSrc, fallbackSrc) {
-    imgEl.onerror = () => {
-      imgEl.onerror = null;
-      if (fallbackSrc && imgEl.src !== fallbackSrc) {
-        imgEl.src = fallbackSrc;
-      }
+    const candidates = [];
+    if (preferredSrc) {
+      candidates.push(preferredSrc);
+      if (preferredSrc.startsWith('assets/')) candidates.push(preferredSrc.slice(7));
+    }
+    if (fallbackSrc && fallbackSrc !== preferredSrc) {
+      candidates.push(fallbackSrc);
+      if (fallbackSrc.startsWith('assets/')) candidates.push(fallbackSrc.slice(7));
+    }
+    let idx = 0;
+    const tryNext = () => {
+      if (idx >= candidates.length) return;
+      const nextSrc = candidates[idx++];
+      imgEl.onerror = tryNext;
+      imgEl.src = nextSrc;
     };
-    imgEl.src = preferredSrc;
+    tryNext();
   }
 
   function updateDraconiaCorner(node) {
@@ -245,7 +255,7 @@
     if (expr && expr !== 'normal') {
       setImageWithFallback(el.imgDraconiaCorner, `assets/draconia_${expr}.png`, base);
     } else {
-      el.imgDraconiaCorner.src = base;
+      setImageWithFallback(el.imgDraconiaCorner, base, 'draconia.png');
     }
   }
 
@@ -380,18 +390,28 @@
     saveToKey(AUTO_SAVE_KEY);
 
     const setSceneBackground = (bgPath) => {
-      if (bgPath && bgPath.endsWith('.png')) {
+      const candidates = [];
+      if (bgPath) {
+        candidates.push(bgPath);
+        if (bgPath.startsWith('assets/')) candidates.push(bgPath.slice(7));
+        if (bgPath.endsWith('.png')) {
+          const svgPath = bgPath.replace('.png', '.svg');
+          candidates.push(svgPath);
+          if (svgPath.startsWith('assets/')) candidates.push(svgPath.slice(7));
+        }
+      }
+      let idx = 0;
+      const tryBg = () => {
+        if (idx >= candidates.length) return;
+        const nextBg = candidates[idx++];
         const probe = new Image();
         probe.onload = () => {
-          el.sceneBg.style.backgroundImage = `url('${bgPath}')`;
+          el.sceneBg.style.backgroundImage = `url('${nextBg}')`;
         };
-        probe.onerror = () => {
-          el.sceneBg.style.backgroundImage = `url('${bgPath.replace('.png', '.svg')}')`;
-        };
-        probe.src = bgPath;
-      } else {
-        el.sceneBg.style.backgroundImage = `url('${bgPath}')`;
-      }
+        probe.onerror = tryBg;
+        probe.src = nextBg;
+      };
+      tryBg();
     };
     setSceneBackground(node.bg);
     updateParticles(node);
@@ -924,7 +944,22 @@
     }
   }
 
+  function initTitleBackgrounds() {
+    document.querySelectorAll('.title-bg').forEach((bgEl) => {
+      const styleBg = bgEl.style.backgroundImage || '';
+      const match = styleBg.match(/['"]?(assets\/[^'")]+)['"]?/);
+      if (!match) return;
+      const orig = match[1];
+      const probe = new Image();
+      probe.onerror = () => {
+        bgEl.style.backgroundImage = `url('${orig.slice(7)}')`;
+      };
+      probe.src = orig;
+    });
+  }
+
   function init() {
+    initTitleBackgrounds();
     window.GAME_ANALYTICS?.init();
     el.selectLanguage.value = state.lang;
     el.selectLanguage.addEventListener('change', (e) => {

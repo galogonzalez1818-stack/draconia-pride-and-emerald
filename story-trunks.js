@@ -10,7 +10,7 @@ window.VN_BUILD([
     next: 'tr1_2',
   },
   {
-    id: 'tr1_2', chapter: 4, music: 'romance', bg: 'assets/bg_forest.jpg', chars: ['harry'], active: 'harry', speaker: 'harry',
+    id: 'tr1_2', chapter: 4, music: 'romance', bg: 'assets/bg_forest.jpg', chars: ['harry'], active: 'harry', draconiaExpr: 'blush', speaker: 'harry',
     text: 'Here, Draconia, take my scarf—your hands are shaking from the cold. Stay right behind me if anything moves in the trees.',
     next: 'tr1_3',
   },
@@ -25,7 +25,7 @@ window.VN_BUILD([
     next: 'tr1_5',
   },
   {
-    id: 'tr1_5', chapter: 4, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['harry', 'remuz'], active: 'remuz', speaker: 'remuz',
+    id: 'tr1_5', chapter: 4, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['harry', 'remuz'], active: 'remuz', draconiaExpr: 'angry', speaker: 'remuz',
     text: 'Three against three—Harry, Draconia, watch the flanking shadows! Barti’s curses are fast!',
     next: 'tr1_6',
   },
@@ -40,27 +40,27 @@ window.VN_BUILD([
     next: 'tr1_8',
   },
   {
-    id: 'tr1_8', chapter: 4, music: 'normal', bg: 'assets/bg_forest.jpg', chars: ['harry', 'lucio'], active: 'harry', speaker: 'harry',
+    id: 'tr1_8', chapter: 4, music: 'normal', bg: 'assets/bg_forest.jpg', chars: ['harry', 'lucio'], active: 'harry', draconiaExpr: 'happy', speaker: 'harry',
     text: 'They retreated into the fog! Thank you, Lord Lucio—if you hadn’t arrived when you did, Barti would’ve flanked us.',
     next: 'tr1_9',
   },
   {
-    id: 'tr1_9', chapter: 4, music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'draconia', speaker: 'draconia',
+    id: 'tr1_9', chapter: 4, music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'draconia', draconiaExpr: 'happy', speaker: 'draconia',
     text: 'I can’t sleep. My palms still tingle from the battle, and Lord Lucio’s quiet approval keeps echoing in my ears. I slip up to the Astronomy Tower for air—only to hear footsteps behind me. Harry, carrying two steaming mugs of spiced cider.',
     next: 'tr1_10',
   },
   {
-    id: 'tr1_10', chapter: 4, music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', speaker: 'harry',
+    id: 'tr1_10', chapter: 4, music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', draconiaExpr: 'blush', speaker: 'harry',
     text: 'My heart nearly stopped when you stepped in front of me to block Belatrix’s hex, Draconia. You’re terrifyingly brave—and I can’t stop looking at you.',
     next: 'tr1_11',
   },
   {
-    id: 'tr1_11', chapter: 4, music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', sfx: 'heartbeat', speaker: 'harry',
+    id: 'tr1_11', chapter: 4, music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', draconiaExpr: 'blush', sfx: 'heartbeat', speaker: 'harry',
     text: 'Forget house rivalries, forget what anyone whispers in the corridors. I’ve fallen for you, Draconia. Completely.',
     next: 'tr1_split',
   },
   {
-    id: 'tr1_split', chapter: 4, music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'draconia', speaker: 'draconia',
+    id: 'tr1_split', chapter: 4, music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'draconia', draconiaExpr: 'happy', speaker: 'draconia',
     text: 'The cider mug warms my freezing fingers, yet my whole chest feels like it’s about to burst. For the first time in my life, I don’t want to hide behind pride.',
     choices: [
       { text: '"I’m done hiding, Harry. If this is real, let the whole Academy see us walk together."', effects: { affection: 20, sincerity: 25 }, next: 't1_1' },
@@ -80,12 +80,12 @@ window.VN_BUILD([
     next: 'tr2_3',
   },
   {
-    id: 'tr2_3', chapter: 5, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['barti', 'belatrix'], active: 'barti', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', speaker: 'barti',
+    id: 'tr2_3', chapter: 5, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['barti', 'belatrix'], active: 'barti', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', draconiaExpr: 'angry', speaker: 'barti',
     text: 'Stop them! Piter already delivered the Eclipse-Roots—don’t let Harry anywhere near the portal!',
     next: 'tr2_4',
   },
   {
-    id: 'tr2_4', chapter: 5, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['harry', 'ronn'], active: 'ronn', fx: ['flash-emerald'], sfx: 'magic', speaker: 'ronn',
+    id: 'tr2_4', chapter: 5, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['harry', 'ronn'], active: 'ronn', fx: ['flash-emerald'], sfx: 'magic', draconiaExpr: 'angry', speaker: 'ronn',
     text: 'Without hesitating, I step in front of Harry and deflect Barti’s curse straight back into the shadows. Ronn stares wide-eyed: "Blimey, Draconia... you didn’t even blink before shielding him."',
     next: 'tr2_5',
   },
@@ -95,22 +95,22 @@ window.VN_BUILD([
     next: 'tr2_6',
   },
   {
-    id: 'tr2_6', chapter: 5, music: 'normal', bg: 'assets/bg_infirmary.png', chars: ['hermiona', 'lune'], active: 'hermiona', speaker: 'hermiona',
+    id: 'tr2_6', chapter: 5, music: 'normal', bg: 'assets/bg_infirmary.png', chars: ['hermiona', 'lune'], active: 'hermiona', draconiaExpr: 'blush', speaker: 'hermiona',
     text: 'Back in the Infirmary, Hermiona finishes wrapping the scratch on Harry’s wrist. "Word travels fast, Draconia. Everyone knows you stepped in front of a dark curse for him."',
     next: 'tr2_7',
   },
   {
-    id: 'tr2_7', chapter: 5, music: 'normal', bg: 'assets/bg_infirmary.png', chars: ['lune', 'nevile'], active: 'lune', speaker: 'lune',
+    id: 'tr2_7', chapter: 5, music: 'normal', bg: 'assets/bg_infirmary.png', chars: ['lune', 'nevile'], active: 'lune', draconiaExpr: 'blush', speaker: 'lune',
     text: 'Lune smiles softly from the doorway. "You pretend to be annoyed, Draconia, yet you haven’t left his bedside since we got back."',
     next: 'tr2_8',
   },
   {
-    id: 'tr2_8', chapter: 5, music: 'romance', bg: 'assets/bg_infirmary.png', chars: ['harry'], active: 'harry', mood: 'blush', sfx: 'heartbeat', speaker: 'harry',
+    id: 'tr2_8', chapter: 5, music: 'romance', bg: 'assets/bg_infirmary.png', chars: ['harry'], active: 'harry', mood: 'blush', draconiaExpr: 'surprised', sfx: 'heartbeat', speaker: 'harry',
     text: 'Once the others step out, Harry nervously pulls a small silver-emerald hairpin from his pocket. "I noticed yours broke in the Forest. It’s not much... but I wanted you to have it."',
     next: 'tr2_split',
   },
   {
-    id: 'tr2_split', chapter: 5, music: 'romance', bg: 'assets/bg_infirmary.png', chars: ['harry', 'hermiona'], active: 'draconia', speaker: 'draconia',
+    id: 'tr2_split', chapter: 5, music: 'romance', bg: 'assets/bg_infirmary.png', chars: ['harry', 'hermiona'], active: 'draconia', draconiaExpr: 'blush', speaker: 'draconia',
     text: 'I stare at the delicate emerald hairpin resting in his palm. My throat goes tight—he actually noticed something so small in the middle of a fight.',
     choices: [
       { text: 'Take it quietly, hiding my blush: "You’re impossible, Harry... Fine. I’ll wear it, since you went to the trouble."', effects: { affection: 15 }, next: 't2_1' },
@@ -125,12 +125,12 @@ window.VN_BUILD([
     next: 'tr3_2',
   },
   {
-    id: 'tr3_2', chapter: 6, music: 'normal', bg: 'assets/bg_greenhouse.png', chars: ['nevile', 'pamona'], active: 'pamona', speaker: 'pamona',
+    id: 'tr3_2', chapter: 6, music: 'normal', bg: 'assets/bg_greenhouse.png', chars: ['nevile', 'pamona'], active: 'pamona', draconiaExpr: 'happy', speaker: 'pamona',
     text: 'Following Minerba’s map, we hurry across the damp lawn into Greenhouse Four. Professor Pamona smiles as we enter: "Just in time! Nevile’s Moon-Ferns just bloomed into pure silver shields!"',
     next: 'tr3_3',
   },
   {
-    id: 'tr3_3', chapter: 6, music: 'normal', bg: 'assets/bg_greenhouse.png', chars: ['nevile', 'lune'], active: 'nevile', speaker: 'nevile',
+    id: 'tr3_3', chapter: 6, music: 'normal', bg: 'assets/bg_greenhouse.png', chars: ['nevile', 'lune'], active: 'nevile', draconiaExpr: 'happy', speaker: 'nevile',
     text: 'Nevile hands each of us a glowing silver leaf. "I never thought I’d be preparing battle-wards alongside Draconia... Thank you for trusting us, seriously."',
     next: 'tr3_4',
   },
@@ -140,12 +140,12 @@ window.VN_BUILD([
     next: 'tr3_5',
   },
   {
-    id: 'tr3_5', chapter: 6, music: 'danger', bg: 'assets/bg_bridge.png', chars: ['harry', 'ronn'], active: 'harry', speaker: 'harry',
+    id: 'tr3_5', chapter: 6, music: 'danger', bg: 'assets/bg_bridge.png', chars: ['harry', 'ronn'], active: 'harry', draconiaExpr: 'angry', speaker: 'harry',
     text: 'Ronn and I just returned from the outer wall—the wards are shaking! Draconia, what’s the call?',
     next: 'tr3_split',
   },
   {
-    id: 'tr3_split', chapter: 6, music: 'serious', bg: 'assets/bg_bridge.png', chars: ['alaric', 'harry'], active: 'draconia', speaker: 'draconia',
+    id: 'tr3_split', chapter: 6, music: 'serious', bg: 'assets/bg_bridge.png', chars: ['alaric', 'harry'], active: 'draconia', draconiaExpr: 'happy', speaker: 'draconia',
     text: 'Cold wind whips across the Stone Bridge. Hermiona, Ronn, Lune, Nevile, and Harry are all waiting on my word—not because of my surname, but because they actually trust me.',
     choices: [
       { text: '"Let’s rally Harry, Hermiona, Ronn, Lune, and Nevile at the core—together the six of us can seal the Mirror!"', effects: { courage: 25 }, next: 't4_1' },
@@ -160,27 +160,27 @@ window.VN_BUILD([
     next: 'tr4_2',
   },
   {
-    id: 'tr4_2', chapter: 7, music: 'mystery', bg: 'assets/bg_potions.jpg', chars: ['severo'], active: 'severo', speaker: 'severo',
+    id: 'tr4_2', chapter: 7, music: 'mystery', bg: 'assets/bg_potions.jpg', chars: ['severo'], active: 'severo', draconiaExpr: 'sad', speaker: 'severo',
     text: 'However, tampering with parallel magic risks severing you from everyone you love—including Harry. Are you certain you wish to walk the shadows?',
     next: 'tr4_3',
   },
   {
-    id: 'tr4_3', chapter: 7, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['barti', 'piter'], active: 'piter', sfx: 'wind', speaker: 'piter',
+    id: 'tr4_3', chapter: 7, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['barti', 'piter'], active: 'piter', sfx: 'wind', draconiaExpr: 'angry', speaker: 'piter',
     text: 'After memorizing Severo’s counter-runes, I slip out alone past curfew to trace the silver ash into the Enchanted Forest. Ahead of me, Piter freezes in the mist: "Look, Barti! Draconia’s alone—no Harry, no Albuz!"',
     next: 'tr4_4',
   },
   {
-    id: 'tr4_4', chapter: 7, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['belatrix'], active: 'belatrix', speaker: 'belatrix',
+    id: 'tr4_4', chapter: 7, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['belatrix'], active: 'belatrix', draconiaExpr: 'angry', speaker: 'belatrix',
     text: 'Belatrix steps from the shadows with a chilling grin. "Don’t touch her, fools! Her locket is drawing her straight to the hidden tunnel—let her walk right down to Lord Thom!"',
     next: 'tr4_5',
   },
   {
-    id: 'tr4_5', chapter: 7, music: 'mystery', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'thom', sfx: 'door', speaker: 'thom',
+    id: 'tr4_5', chapter: 7, music: 'mystery', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'thom', sfx: 'door', draconiaExpr: 'surprised', speaker: 'thom',
     text: 'Keeping my wand raised, I descend the stone passage beneath the roots until the obsidian Mirror Vault opens before me. Standing beside the glowing silver glass, Thom smiles: "At last, Draconia."',
     next: 'tr4_split',
   },
   {
-    id: 'tr4_split', chapter: 7, music: 'mystery', bg: 'assets/bg_vault.jpg', chars: ['thom', 'severo'], active: 'draconia', speaker: 'draconia',
+    id: 'tr4_split', chapter: 7, music: 'mystery', bg: 'assets/bg_vault.jpg', chars: ['thom', 'severo'], active: 'draconia', draconiaExpr: 'sad', speaker: 'draconia',
     text: 'Silver light spirals around my ankles like cold water. In that reflection, I see Harry’s worried face—and realize whatever I choose right now, I can never take back.',
     choices: [
       { text: 'Give the agreed signal to Severo to invert the runes from the shadows and trap Thom.', effects: { courage: 20, mystery: 15 }, next: 't6_1' },
@@ -191,7 +191,7 @@ window.VN_BUILD([
 
   // ==================== TRUNK 5: THE ARISTOCRAT'S DUTY -> Splits into T5 (House Honor) or T10 (Solitude) ====================
   {
-    id: 'tr5_1', chapter: 8, music: 'serious', bg: 'assets/bg_dorm.png', chars: ['lucio'], active: 'lucio', speaker: 'lucio',
+    id: 'tr5_1', chapter: 8, music: 'serious', bg: 'assets/bg_dorm.png', chars: ['lucio'], active: 'lucio', draconiaExpr: 'sad', speaker: 'lucio',
     text: 'Here in the Emerald Common Room, you hold yourself with admirable composure, Draconia. Yet remember: pride is a shield against dishonor, not a wall to shut out every ally.',
     next: 'tr5_2',
   },
@@ -201,12 +201,12 @@ window.VN_BUILD([
     next: 'tr5_3',
   },
   {
-    id: 'tr5_3', chapter: 8, music: 'serious', bg: 'assets/bg_bridge.png', chars: ['harry'], active: 'harry', sfx: 'wind', speaker: 'harry',
+    id: 'tr5_3', chapter: 8, music: 'serious', bg: 'assets/bg_bridge.png', chars: ['harry'], active: 'harry', sfx: 'wind', draconiaExpr: 'sad', speaker: 'harry',
     text: 'Out on the snowy Stone Bridge where the faculty is assembling, Harry steps into my path one final time. "Whatever happened between our houses, Draconia, we need you down there. Will you stand with us—or stand alone?"',
     next: 'tr5_split',
   },
   {
-    id: 'tr5_split', chapter: 8, music: 'serious', bg: 'assets/bg_bridge.png', chars: ['harry', 'lucio'], active: 'draconia', speaker: 'draconia',
+    id: 'tr5_split', chapter: 8, music: 'serious', bg: 'assets/bg_bridge.png', chars: ['harry', 'lucio'], active: 'draconia', draconiaExpr: 'sad', speaker: 'draconia',
     text: 'Harry’s green eyes plead with me through the snow while my father stands silently beside me. My pride aches—why is letting someone in so terrifying?',
     choices: [
       { text: '"I will fight shoulder-to-shoulder with my father to defend this Academy—and earn your respect as an equal, Harry."', effects: { courage: 25, sincerity: 10 }, next: 't5_1' },

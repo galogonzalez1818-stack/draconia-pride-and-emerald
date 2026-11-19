@@ -91,7 +91,10 @@
     sceneBg: document.getElementById('scene-bg'),
     particlesLayer: document.getElementById('particles-layer'),
     fxFlash: document.getElementById('fx-flash'),
+    stage: document.getElementById('stage'),
+    slotDraconia: document.getElementById('char-slot-draconia'),
     imgDraconiaCorner: document.getElementById('img-draconia-corner'),
+    imgEndingDraconia: document.getElementById('img-ending-draconia'),
     hudChapter: document.getElementById('hud-chapter'),
     valAffection: document.getElementById('val-affection'),
     valSincerity: document.getElementById('val-sincerity'),
@@ -257,6 +260,24 @@
     } else {
       setImageWithFallback(el.imgDraconiaCorner, base, 'draconia.png');
     }
+
+    if (el.slotDraconia) {
+      el.slotDraconia.classList.remove('speaking', 'dimmed', 'blushing', 'happy-glow');
+      const hasNpcs = (node.chars || []).some((c) => CHAR_IMAGES[c]);
+      const draconiaSpeaking =
+        !hasNpcs ||
+        node.speaker === 'draconia' ||
+        node.active === 'draconia';
+
+      if (draconiaSpeaking) {
+        el.slotDraconia.classList.add('speaking');
+      } else if (node.active && node.active !== 'narrator') {
+        el.slotDraconia.classList.add('dimmed');
+      }
+
+      if (expr === 'blush') el.slotDraconia.classList.add('blushing');
+      if (expr === 'happy') el.slotDraconia.classList.add('happy-glow');
+    }
   }
 
   function triggerFx(node) {
@@ -305,11 +326,24 @@
 
   function updateCharacters(node) {
     const chars = (node.chars || []).filter((c) => CHAR_IMAGES[c]);
-    const leftChar = chars[0] || null;
-    const rightChar = chars[1] || null;
+    // Max 2 characters on screen at once: Draconia (left) + at most 1 scene partner (right)
+    let partnerChar = null;
+    if (chars.length > 0) {
+      if (node.active && chars.includes(node.active)) {
+        partnerChar = node.active;
+      } else if (node.speaker && chars.includes(node.speaker)) {
+        partnerChar = node.speaker;
+      } else {
+        partnerChar = chars[0];
+      }
+    }
 
-    applySlot(el.slotLeft, el.imgLeft, leftChar, node);
-    applySlot(el.slotRight, el.imgRight, rightChar, node);
+    if (el.stage) {
+      el.stage.dataset.count = partnerChar ? '1' : '0';
+    }
+
+    applySlot(el.slotLeft, el.imgLeft, partnerChar, node);
+    applySlot(el.slotRight, el.imgRight, null, node);
     updateDraconiaCorner(node);
   }
 
@@ -322,7 +356,7 @@
     slotEl.classList.remove('hidden');
     const baseSrc = CHAR_IMAGES[charKey];
     let expr = '';
-    if (node.active === charKey) {
+    if (node.active === charKey || node.speaker === charKey) {
       expr = node.expr || (node.mood === 'blush' ? 'blush' : '');
     }
     const preferredSrc =
@@ -333,10 +367,10 @@
     setImageWithFallback(imgEl, preferredSrc, baseSrc);
     imgEl.alt = CHAR_NAMES[charKey] || charKey;
 
-    if (node.active === charKey) {
+    if (node.active === charKey || node.speaker === charKey) {
       slotEl.classList.add('speaking');
       if (node.mood === 'blush' || expr === 'blush') slotEl.classList.add('blushing');
-    } else if (node.active && node.active !== 'narrator' && node.active !== 'draconia') {
+    } else if (node.speaker && node.speaker !== 'narrator') {
       slotEl.classList.add('dimmed');
     }
   }
@@ -435,6 +469,7 @@
 
     el.choicesContainer.innerHTML = '';
     el.choicesContainer.hidden = true;
+    screens.game.classList.remove('has-choices');
     el.tapIndicator.style.visibility = node.choices ? 'hidden' : 'visible';
 
     typeText(localizedText, () => {
@@ -477,6 +512,7 @@
       el.choicesContainer.appendChild(btn);
     });
     el.choicesContainer.hidden = false;
+    screens.game.classList.add('has-choices');
   }
 
   function handleChoice(choice) {
@@ -533,6 +569,15 @@
       el.endSincerity.textContent = state.sincerity;
       el.endCourage.textContent = state.courage;
       el.endMystery.textContent = state.mystery;
+      if (el.imgEndingDraconia) {
+        const sadEndings = new Set(['echoes', 'solitude']);
+        const exprSrc = sadEndings.has(ending.id)
+          ? 'assets/draconia_sad.png'
+          : ending.id === 'mirror_queen'
+            ? 'assets/draconia.png'
+            : 'assets/draconia_happy.png';
+        setImageWithFallback(el.imgEndingDraconia, exprSrc, 'assets/draconia.png');
+      }
       showScreen('ending');
     };
 

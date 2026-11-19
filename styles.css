@@ -81,70 +81,96 @@ html, body {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 560px;
+  max-width: 540px;
   border-radius: 22px;
-  padding: 24px 22px;
+  padding: 18px 20px;
   text-align: center;
   max-height: 100%;
   overflow-y: auto;
+}
+
+.ending-portrait {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.ending-portrait img {
+  width: 124px;
+  height: 124px;
+  object-fit: contain;
+  object-position: bottom center;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.28) 0%, rgba(7, 17, 13, 0.85) 75%);
+  border: 2.5px solid var(--emerald);
+  box-shadow: 0 0 22px rgba(16, 185, 129, 0.45);
 }
 
 .pill-tag {
   display: inline-block;
   padding: 4px 12px;
   border-radius: 999px;
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   background: rgba(16, 185, 129, 0.18);
   color: #6ee7b7;
   border: 1px solid rgba(16, 185, 129, 0.35);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .game-title {
   font-family: 'Cinzel', Georgia, serif;
-  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  font-size: clamp(1.5rem, 3.8vw, 2.15rem);
   color: var(--gold);
   text-shadow: 0 2px 14px rgba(212, 175, 55, 0.35);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .game-subtitle, .ending-desc {
-  font-size: 0.94rem;
-  line-height: 1.55;
+  font-size: 0.9rem;
+  line-height: 1.5;
   color: var(--silver);
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .title-portraits {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .mini-portrait {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
 }
 
 .mini-portrait img {
-  width: 68px;
-  height: 68px;
-  object-fit: cover;
-  object-position: top;
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  object-position: bottom center;
   border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, rgba(7, 17, 13, 0.9) 78%);
   border: 2.5px solid var(--gold);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
 }
 
-.mini-portrait.emerald-border img { border-color: var(--emerald); }
-.mini-portrait.crimson-border img { border-color: var(--crimson); }
+.mini-portrait.emerald-border img {
+  border-color: var(--emerald);
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.42);
+}
+.mini-portrait.crimson-border img {
+  border-color: var(--crimson);
+  background: radial-gradient(circle, rgba(225, 29, 72, 0.22) 0%, rgba(7, 17, 13, 0.9) 78%);
+  box-shadow: 0 0 16px rgba(225, 29, 72, 0.35);
+}
 
 .mini-portrait span {
   font-size: 0.78rem;
@@ -155,7 +181,7 @@ html, body {
 .title-actions {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .btn {
@@ -163,8 +189,8 @@ html, body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 44px;
-  padding: 10px 18px;
+  min-height: 41px;
+  padding: 9px 16px;
   border-radius: 12px;
   font-size: 0.94rem;
   font-weight: 600;
@@ -238,102 +264,101 @@ html, body {
   color: var(--silver);
 }
 
-/* ==================== TOP HUD & DRACONIA CORNER PORTRAIT ==================== */
+/* ==================== TOP HUD (CLEAN, SLEEK & ORDERLY) ==================== */
 .top-hud {
   position: relative;
-  z-index: 6;
+  z-index: 7;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  padding: 12px 16px 0;
+  gap: 10px;
+  padding: 10px 18px 0;
   pointer-events: none;
 }
 
-.top-left-stack {
-  pointer-events: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.draconia-corner, .top-right-hud {
+.top-left-group {
   pointer-events: auto;
   display: flex;
   align-items: center;
-  gap: 10px;
-  border-radius: 14px;
-  padding: 6px 12px 6px 6px;
+  gap: 8px;
+  min-width: 0;
+}
+
+.chapter-pill {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.chapter-icon {
+  color: var(--emerald);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  text-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+}
+
+.corner-chapter {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gold);
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .corner-actions {
+  pointer-events: auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 6px;
-  padding: 4px 8px;
-  border-radius: 10px;
+  height: 40px;
+  padding: 0 8px;
+  border-radius: 12px;
 }
 
 .corner-action-btn {
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(212, 175, 55, 0.3);
   color: #e2e8f0;
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   font-weight: 600;
   font-family: inherit;
-  padding: 4px 10px;
-  border-radius: 7px;
+  padding: 5px 11px;
+  border-radius: 8px;
   cursor: pointer;
-  flex: 1;
-  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 .corner-action-btn:hover {
   background: rgba(16, 185, 129, 0.25);
+  border-color: rgba(110, 231, 183, 0.55);
   color: var(--gold);
-}
-
-.draconia-corner img {
-  width: 104px;
-  height: 124px;
-  border-radius: 10px;
-  object-fit: cover;
-  object-position: top;
-  border: 2px solid var(--emerald);
-  box-shadow: 0 0 14px rgba(16, 185, 129, 0.4);
-}
-
-.draconia-corner-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.corner-name {
-  font-family: 'Cinzel', serif;
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: #6ee7b7;
-}
-
-.corner-chapter {
-  font-size: 0.75rem;
-  color: var(--gold);
-  max-width: 210px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .top-right-hud {
-  padding: 7px 10px;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
   gap: 10px;
+  height: 40px;
+  padding: 0 10px 0 14px;
+  border-radius: 12px;
+  flex-shrink: 0;
 }
 
 .mini-stat {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--silver);
+  white-space: nowrap;
 }
 
 .icon-btn, .icon-btn-sm {
@@ -344,12 +369,18 @@ html, body {
   cursor: pointer;
   display: grid;
   place-items: center;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.icon-btn:hover, .icon-btn-sm:hover {
+  background: rgba(16, 185, 129, 0.25);
+  border-color: rgba(212, 175, 55, 0.45);
 }
 
 .icon-btn { width: 34px; height: 34px; font-size: 1rem; }
-.icon-btn-sm { width: 30px; height: 30px; font-size: 0.9rem; }
+.icon-btn-sm { width: 28px; height: 28px; font-size: 0.85rem; }
 
-/* ==================== CHARACTER STAGE (DESKTOP VN STYLE) ==================== */
+/* ==================== CHARACTER STAGE (DRACONIA PROTAGONIST + CAST) ==================== */
 .stage {
   position: relative;
   z-index: 2;
@@ -357,75 +388,128 @@ html, body {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: clamp(20px, 6vw, 90px);
+  gap: clamp(12px, 4vw, 68px);
   width: 100%;
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: 0 24px;
+  max-width: 1220px;
+  margin: 0 auto -14px;
+  padding: 0 20px;
   min-height: 0;
   pointer-events: none;
+  overflow: visible;
+  transition: transform 0.25s ease;
 }
 
 .vn-sprite {
-  height: min(54dvh, 430px);
-  aspect-ratio: 3 / 4;
+  flex: 0 0 auto;
+  height: min(55dvh, 430px);
+  aspect-ratio: 1 / 1;
   transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 72%, rgba(0,0,0,0) 100%);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 72%, rgba(0,0,0,0) 100%);
-  border-radius: 18px 18px 0 0;
-  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 86%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 86%, rgba(0, 0, 0, 0) 100%);
+  overflow: visible;
+  position: relative;
 }
 
 .vn-sprite img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: bottom center;
   display: block;
 }
 
-.vn-sprite.hidden { display: none; }
-.vn-sprite.dimmed { opacity: 0.72; filter: brightness(0.75); transform: scale(0.96); }
-.vn-sprite.speaking { opacity: 1; filter: brightness(1.05); transform: translateY(-6px) scale(1.02); }
-.vn-sprite.blushing { filter: brightness(1.06) drop-shadow(0 0 18px rgba(251, 113, 133, 0.55)); }
+/* Draconia Protagonist Prominence */
+.draconia-protag {
+  z-index: 3;
+  height: min(58dvh, 455px);
+  filter: drop-shadow(0 6px 20px rgba(16, 185, 129, 0.32));
+}
 
-/* ==================== CHOICES OVERLAY (FLOATING, NEVER SHRINKS STAGE) ==================== */
+.npc-sprite {
+  z-index: 2;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.5));
+}
+
+/* Solo Draconia Scene (Prologue / Monologue) */
+.stage[data-count="0"] .draconia-protag {
+  height: min(63dvh, 490px);
+}
+
+/* Duo Scene (Draconia left + 1 active character right) */
+.stage[data-count="1"] {
+  gap: clamp(18px, 5vw, 84px);
+}
+
+.vn-sprite.hidden { display: none; }
+.npc-sprite.dimmed { opacity: 0.74; filter: brightness(0.75) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45)); transform: scale(0.96); }
+.npc-sprite.speaking { opacity: 1; filter: brightness(1.06) drop-shadow(0 8px 20px rgba(255, 255, 255, 0.16)); transform: translateY(-6px) scale(1.02); }
+.npc-sprite.blushing { filter: brightness(1.06) drop-shadow(0 0 20px rgba(251, 113, 133, 0.6)); }
+
+.draconia-protag.dimmed {
+  opacity: 0.92;
+  filter: brightness(0.88) drop-shadow(0 4px 14px rgba(16, 185, 129, 0.24));
+  transform: scale(0.985);
+}
+
+.draconia-protag.speaking {
+  opacity: 1;
+  filter: brightness(1.05) drop-shadow(0 8px 26px rgba(16, 185, 129, 0.55));
+  transform: translateY(-6px) scale(1.03);
+}
+
+.draconia-protag.blushing {
+  filter: brightness(1.06) drop-shadow(0 6px 24px rgba(251, 113, 133, 0.62));
+}
+
+.draconia-protag.happy-glow {
+  filter: brightness(1.06) drop-shadow(0 6px 26px rgba(212, 175, 55, 0.6));
+}
+
+/* ==================== CHOICES OVERLAY (CLEAN, NEVER COVERS FACES) ==================== */
 .choices-container {
   position: absolute;
   left: 50%;
-  bottom: 184px;
+  bottom: 152px;
   transform: translateX(-50%);
   z-index: 8;
   width: calc(100% - 32px);
   max-width: 680px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .choices-container[hidden] {
   display: none;
 }
 
+.screen.has-choices .stage {
+  transform: translateY(-16px);
+}
+
 .choice-btn {
   width: 100%;
   text-align: center;
-  padding: 12px 18px;
-  border-radius: 12px;
-  background: rgba(11, 31, 24, 0.94);
-  border: 2px solid rgba(212, 175, 55, 0.65);
+  padding: 9px 16px;
+  border-radius: 11px;
+  background: rgba(7, 23, 18, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(212, 175, 55, 0.68);
   color: #fefce8;
-  font-size: 0.95rem;
+  font-size: 0.89rem;
+  line-height: 1.32;
   font-weight: 600;
   font-family: inherit;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-  transition: transform 0.14s ease, background 0.18s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
+  transition: transform 0.14s ease, background 0.18s ease, border-color 0.18s ease;
 }
 
 .choice-btn:hover {
-  background: rgba(16, 185, 129, 0.35);
-  transform: scale(1.015);
+  background: rgba(16, 185, 129, 0.36);
+  border-color: #fde68a;
+  transform: scale(1.012);
 }
 
 /* ==================== CLASSIC VN DIALOGUE BOX (DDLC INSPIRED) ==================== */
@@ -433,17 +517,17 @@ html, body {
   position: relative;
   z-index: 5;
   width: calc(100% - 28px);
-  max-width: 880px;
-  margin: 0 auto 12px;
+  max-width: 920px;
+  margin: 0 auto 10px;
 }
 
 .vn-dialogue-box {
   position: relative;
-  background: linear-gradient(180deg, rgba(16, 44, 34, 0.9) 0%, rgba(9, 24, 19, 0.94) 100%);
-  border: 2.5px solid rgba(226, 232, 240, 0.82);
+  background: linear-gradient(180deg, rgba(14, 40, 31, 0.92) 0%, rgba(8, 22, 17, 0.96) 100%);
+  border: 2px solid rgba(212, 175, 55, 0.65);
   border-radius: 16px;
-  padding: 20px 24px 10px;
-  min-height: 146px;
+  padding: 18px 24px 10px;
+  min-height: 132px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -718,60 +802,113 @@ html, body {
 /* ==================== DEDICATED MOBILE FORMAT (< 768px) ==================== */
 @media (max-width: 767px) {
   .top-hud {
-    padding: 8px 10px 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
     gap: 6px;
+    padding: 8px 10px 0;
   }
 
-  .draconia-corner {
-    padding: 4px 10px 4px 4px;
-    gap: 8px;
+  .top-left-group {
+    display: contents;
   }
 
-  .draconia-corner img {
-    width: 76px;
-    height: 92px;
+  .chapter-pill {
+    grid-column: 1;
+    grid-row: 1;
+    height: 34px;
+    padding: 0 10px;
+    gap: 6px;
+    border-radius: 10px;
   }
 
-  .corner-name { font-size: 0.8rem; }
-  .corner-chapter { font-size: 0.68rem; max-width: 110px; }
+  .corner-chapter {
+    font-size: 0.72rem;
+    max-width: none;
+  }
 
   .top-right-hud {
-    padding: 5px 8px;
-    gap: 6px;
+    grid-column: 2;
+    grid-row: 1;
+    height: 34px;
+    padding: 0 6px 0 8px;
+    gap: 5px;
+    border-radius: 10px;
   }
 
-  .mini-stat { font-size: 0.72rem; }
+  .mini-stat {
+    font-size: 0.7rem;
+  }
+
+  .icon-btn-sm {
+    width: 24px;
+    height: 24px;
+    font-size: 0.78rem;
+  }
+
+  .corner-actions {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    height: 32px;
+    padding: 0 6px;
+    gap: 6px;
+    border-radius: 10px;
+  }
+
+  .corner-action-btn {
+    flex: 1;
+    padding: 4px 6px;
+    font-size: 0.72rem;
+    text-align: center;
+  }
 
   .stage {
-    padding: 0 10px;
-    gap: 10px;
+    padding: 0 4px;
+    gap: 0;
+    margin-bottom: -10px;
+    overflow: hidden;
   }
 
-  .vn-sprite {
-    height: min(36dvh, 240px);
+  /* Mobile Solo Draconia: HUGE centerpiece */
+  .stage[data-count="0"] .draconia-protag {
+    width: min(92vw, 370px);
+    height: min(52dvh, 370px);
+    margin: 0;
+  }
+
+  /* Mobile Duo: Draconia (left, larger) + 1 active character (right) — roomy & never crowded */
+  .stage[data-count="1"] .draconia-protag {
+    width: min(56vw, 255px);
+    height: min(45dvh, 255px);
+    margin: 0 -14px;
+  }
+
+  .stage[data-count="1"] .npc-sprite {
+    width: min(52vw, 240px);
+    height: min(43dvh, 240px);
+    margin: 0 -14px;
   }
 
   .vn-dialogue-area {
-    width: calc(100% - 16px);
-    margin-bottom: 8px;
+    width: calc(100% - 14px);
+    margin-bottom: 7px;
   }
 
   .vn-dialogue-box {
-    padding: 18px 14px 10px;
-    min-height: 136px;
+    padding: 16px 14px 9px;
+    min-height: 126px;
     border-radius: 14px;
   }
 
   .vn-name-tab {
     left: 14px;
-    top: -17px;
+    top: -16px;
     padding: 3px 14px;
-    font-size: 0.85rem;
+    font-size: 0.84rem;
   }
 
   .vn-dialogue-text {
-    font-size: 0.92rem;
-    line-height: 1.48;
+    font-size: 0.9rem;
+    line-height: 1.46;
   }
 
   .vn-utility-links {
@@ -784,13 +921,17 @@ html, body {
   }
 
   .choices-container {
-    width: calc(100% - 20px);
-    bottom: 162px;
+    width: calc(100% - 18px);
+    bottom: 146px;
+    gap: 6px;
+    max-height: 44dvh;
+    overflow-y: auto;
   }
 
   .choice-btn {
-    padding: 11px 12px;
-    font-size: 0.86rem;
+    padding: 9px 12px;
+    font-size: 0.83rem;
+    line-height: 1.3;
   }
 
   .ad-placeholder-text {

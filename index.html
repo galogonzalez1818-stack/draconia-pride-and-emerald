@@ -77,15 +77,12 @@
       <div id="fx-flash" class="fx-flash" aria-hidden="true"></div>
       <div class="scene-vignette"></div>
 
-      <!-- Top Bar: Draconia Corner Portrait + Save/Load/Settings below it -->
+      <!-- Top Bar: Clean, Orderly Chapter + Actions + Stats -->
       <header class="top-hud">
-        <div class="top-left-stack">
-          <div class="draconia-corner glass" title="Draconia (You)">
-            <img id="img-draconia-corner" src="assets/draconia.png" onerror="this.onerror=null;this.src='draconia.png'" alt="Draconia" />
-            <div class="draconia-corner-meta">
-              <span class="corner-name">Draconia</span>
-              <span id="hud-chapter" class="corner-chapter">Prologue</span>
-            </div>
+        <div class="top-left-group">
+          <div class="chapter-pill glass" title="Current Chapter">
+            <span class="chapter-icon" aria-hidden="true">✦</span>
+            <span id="hud-chapter" class="corner-chapter">Prologue</span>
           </div>
           <div class="corner-actions glass">
             <button id="btn-save" class="corner-action-btn">Save</button>
@@ -103,12 +100,15 @@
         </div>
       </header>
 
-      <!-- Main Character Stage -->
-      <div class="stage">
-        <div id="char-slot-left" class="vn-sprite hidden">
+      <!-- Main Character Stage: Draconia (Protagonist) + Scene Characters -->
+      <div id="stage" class="stage" data-count="0">
+        <div id="char-slot-draconia" class="vn-sprite draconia-protag speaking" title="Draconia">
+          <img id="img-draconia-corner" src="assets/draconia.png" onerror="this.onerror=null;this.src='draconia.png'" alt="Draconia" />
+        </div>
+        <div id="char-slot-left" class="vn-sprite npc-sprite hidden">
           <img id="img-slot-left" src="" alt="" />
         </div>
-        <div id="char-slot-right" class="vn-sprite hidden">
+        <div id="char-slot-right" class="vn-sprite npc-sprite hidden">
           <img id="img-slot-right" src="" alt="" />
         </div>
       </div>
@@ -143,6 +143,9 @@
       <div class="title-bg" style="background-image: url('assets/bg_ball.jpg'), url('bg_ball.jpg');"></div>
       <div class="title-overlay"></div>
       <main class="ending-card glass">
+        <div class="ending-portrait">
+          <img id="img-ending-draconia" src="assets/draconia_happy.png" onerror="this.onerror=null;this.src='draconia_happy.png'" alt="Draconia" />
+        </div>
         <span id="ending-badge" class="pill-tag">Ending</span>
         <h2 id="ending-title" class="game-title">Ending</h2>
         <p id="ending-desc" class="ending-desc"></p>

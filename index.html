@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Pride &amp; Emerald: Echoes of the Rift — Visual Novel</title>
+  <meta name="description" content="Free browser visual novel adventure &amp; dating sim. Play as Draconia across a multiverse mystery alongside Harry, Ronn, and Hermiona." />
+  <meta name="theme-color" content="#064e3b" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <!-- ==================== TITLE SCREEN ==================== -->
+    <section id="screen-title" class="screen active">
+      <div class="title-bg" style="background-image: url('assets/bg_vault.jpg');"></div>
+      <div class="title-overlay"></div>
+
+      <main class="title-card glass">
+        <div class="lang-bar">
+          <label for="select-language" id="lbl-language" class="lang-label">🌐 Language</label>
+          <select id="select-language" class="setting-select">
+            <option value="en">🇺🇸 English</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="pt">🇧🇷 Português</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="zh">🇨🇳 中文</option>
+          </select>
+        </div>
+
+        <span id="title-pill-tag" class="pill-tag">Multiverse Visual Novel • 10 Timelines</span>
+        <h1 class="game-title">Pride &amp; Emerald</h1>
+        <p id="title-subtitle" class="game-subtitle">
+          Echoes of the Rift — Step into <strong>Draconia’s</strong> world as dimensional fractures threaten the Academy and her guarded heart collides with <strong>Harry</strong>.
+        </p>
+
+        <div class="title-portraits">
+          <div class="mini-portrait emerald-border">
+            <img src="assets/draconia.png" alt="Draconia" />
+            <span>Draconia</span>
+          </div>
+          <div class="heart-bridge">💚⚡</div>
+          <div class="mini-portrait crimson-border">
+            <img src="assets/harry.png" alt="Harry" />
+            <span>Harry</span>
+          </div>
+        </div>
+
+        <div class="title-actions">
+          <button id="btn-new-game" class="btn btn-primary">✨ New Story</button>
+          <button id="btn-continue" class="btn btn-secondary" hidden>📖 Continue Saved Game</button>
+          <button id="btn-gallery" class="btn btn-ghost">🏆 Timelines Gallery (<span id="endings-count">0</span>/10)</button>
+          <a id="btn-paypal-title" class="btn btn-paypal" href="#" target="_blank" rel="noopener noreferrer">☕ Support via PayPal</a>
+        </div>
+
+        <div id="stats-legend" class="stats-legend">
+          <span>❤️ Affection</span>
+          <span>✨ Sincerity</span>
+          <span>⚔️ Courage</span>
+          <span>🌀 Mystery</span>
+        </div>
+
+        <p id="device-note" class="device-note">Adaptive layout for Desktop Web &amp; Mobile • Auto-saves progress</p>
+      </main>
+    </section>
+
+    <!-- ==================== GAME SCREEN ==================== -->
+    <section id="screen-game" class="screen">
+      <div id="scene-bg" class="scene-bg"></div>
+      <div id="particles-layer" class="particles-layer" aria-hidden="true"></div>
+      <div id="fx-flash" class="fx-flash" aria-hidden="true"></div>
+      <div class="scene-vignette"></div>
+
+      <!-- Top Bar: Draconia Corner Portrait + Save/Load/Settings below it -->
+      <header class="top-hud">
+        <div class="top-left-stack">
+          <div class="draconia-corner glass" title="Draconia (You)">
+            <img id="img-draconia-corner" src="assets/draconia.png" alt="Draconia" />
+            <div class="draconia-corner-meta">
+              <span class="corner-name">Draconia</span>
+              <span id="hud-chapter" class="corner-chapter">Prologue</span>
+            </div>
+          </div>
+          <div class="corner-actions glass">
+            <button id="btn-save" class="corner-action-btn">Save</button>
+            <button id="btn-load" class="corner-action-btn">Load</button>
+            <button id="btn-settings" class="corner-action-btn">Settings</button>
+          </div>
+        </div>
+
+        <div class="top-right-hud glass">
+          <div class="mini-stat" title="Harry's Affection">❤️ <span id="val-affection">20</span></div>
+          <div class="mini-stat" title="Sincerity">✨ <span id="val-sincerity">10</span></div>
+          <div class="mini-stat" title="Courage">⚔️ <span id="val-courage">10</span></div>
+          <div class="mini-stat" title="Multiverse Mystery">🌀 <span id="val-mystery">0</span></div>
+          <button id="btn-home" class="icon-btn-sm" title="Main Menu">🏠</button>
+        </div>
+      </header>
+
+      <!-- Main Character Stage -->
+      <div class="stage">
+        <div id="char-slot-left" class="vn-sprite hidden">
+          <img id="img-slot-left" src="" alt="" />
+        </div>
+        <div id="char-slot-right" class="vn-sprite hidden">
+          <img id="img-slot-right" src="" alt="" />
+        </div>
+      </div>
+
+      <!-- Choices Overlay -->
+      <div id="choices-container" class="choices-container" hidden></div>
+
+      <!-- Classic VN Dialogue Box (DDLC-inspired layout) -->
+      <div class="vn-dialogue-area">
+        <div id="dialogue-box" class="vn-dialogue-box">
+          <div id="speaker-badge" class="vn-name-tab">Draconia</div>
+
+          <div class="vn-dialogue-body">
+            <p id="dialogue-text" class="vn-dialogue-text"></p>
+          </div>
+
+          <div class="vn-bottom-bar">
+            <div class="vn-utility-links">
+              <button id="btn-history" class="vn-link">History</button>
+              <button id="btn-auto" class="vn-link">Auto</button>
+            </div>
+            <span id="tap-indicator" class="vn-next-arrow">▶</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="toast-msg" class="toast" hidden>Saved!</div>
+    </section>
+
+    <!-- ==================== ENDING SCREEN ==================== -->
+    <section id="screen-ending" class="screen">
+      <div class="title-bg" style="background-image: url('assets/bg_ball.jpg');"></div>
+      <div class="title-overlay"></div>
+      <main class="ending-card glass">
+        <span id="ending-badge" class="pill-tag">Ending</span>
+        <h2 id="ending-title" class="game-title">Ending</h2>
+        <p id="ending-desc" class="ending-desc"></p>
+        <div class="ending-stats">
+          <div>❤️ Affection: <strong id="end-affection">0</strong></div>
+          <div>✨ Sincerity: <strong id="end-sincerity">0</strong></div>
+          <div>⚔️ Courage: <strong id="end-courage">0</strong></div>
+          <div>🌀 Mystery: <strong id="end-mystery">0</strong></div>
+        </div>
+        <div class="title-actions">
+          <button id="btn-replay" class="btn btn-primary">🔄 Play Again</button>
+          <button id="btn-end-gallery" class="btn btn-secondary">🏆 View All 10 Timelines</button>
+          <a id="btn-paypal-ending" class="btn btn-paypal" href="#" target="_blank" rel="noopener noreferrer">☕ Support via PayPal</a>
+        </div>
+      </main>
+    </section>
+
+    <!-- ==================== ENDINGS GALLERY ==================== -->
+    <section id="screen-gallery" class="screen">
+      <div class="title-bg" style="background-image: url('assets/bg_tower.jpg');"></div>
+      <div class="title-overlay"></div>
+      <main class="gallery-card glass">
+        <div class="gallery-header">
+          <h2 id="gallery-title">🏆 Timelines Gallery (10)</h2>
+          <button id="btn-gallery-back" class="btn btn-ghost">Back</button>
+        </div>
+        <button id="btn-jump-crossroads" class="btn btn-secondary" style="margin-bottom: 12px;" hidden>🧭 Jump to Chapter 3 Crossroads</button>
+        <div id="gallery-list" class="gallery-list"></div>
+      </main>
+    </section>
+
+    <!-- ==================== STATIC BANNER AD ==================== -->
+    <aside id="ad-banner-slot" class="ad-banner-slot" aria-label="Advertisement">
+      <div id="ad-banner-inner" class="ad-banner-inner">
+        <span class="ad-label">AD</span>
+        <span class="ad-placeholder-text">Static Responsive Banner (320×50 Mobile / 728×90 Web) — Configure in <code>ads-config.js</code></span>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ==================== HISTORY MODAL ==================== -->
+  <div id="modal-log" class="modal" hidden>
+    <div class="modal-card glass">
+      <div class="modal-header">
+        <h3 id="history-title">📜 Dialogue History</h3>
+        <button id="btn-close-log" class="icon-btn">✕</button>
+      </div>
+      <div id="log-entries" class="log-entries"></div>
+    </div>
+  </div>
+
+  <!-- ==================== SETTINGS MODAL ==================== -->
+  <div id="modal-settings" class="modal" hidden>
+    <div class="modal-card glass">
+      <div class="modal-header">
+        <h3 id="settings-title">⚙️ Settings</h3>
+        <button id="btn-close-settings" class="icon-btn">✕</button>
+      </div>
+      <div class="settings-list">
+        <div class="setting-row">
+          <span id="lbl-music-sfx">Music &amp; Sound Effects</span>
+          <button id="btn-toggle-audio" class="btn btn-secondary">🔊 On</button>
+        </div>
+        <div class="setting-row">
+          <span id="lbl-text-speed">Text Speed</span>
+          <select id="select-text-speed" class="setting-select">
+            <option value="26">Normal</option>
+            <option value="12">Fast</option>
+            <option value="0">Instant</option>
+          </select>
+        </div>
+        <div class="setting-row transfer-row">
+          <span>PC ↔ Mobile Save Code</span>
+          <div class="transfer-btns">
+            <button id="btn-export-code" class="btn btn-ghost btn-sm">📋 Copy</button>
+            <button id="btn-import-code" class="btn btn-ghost btn-sm">📥 Paste</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 15-MINUTE INTERSTITIAL AD MODAL ==================== -->
+  <div id="modal-ad" class="modal" hidden>
+    <div class="modal-card glass ad-modal-card">
+      <div class="modal-header">
+        <span id="ad-modal-title" class="ad-label">SPONSORED BREAK</span>
+        <span id="ad-countdown" class="ad-countdown">5s</span>
+      </div>
+      <div class="ad-video-box">
+        <div class="ad-sparkles">✨</div>
+        <p id="ad-modal-body">15-minute timed ad break. Your real AdSense, Adsterra, or Monetag ad will appear here.</p>
+        <a id="ad-direct-link" class="btn btn-secondary" href="#" target="_blank" rel="noopener noreferrer" hidden>Visit Sponsor</a>
+      </div>
+      <button id="btn-close-ad" class="btn btn-primary" disabled>Wait 5s...</button>
+    </div>
+  </div>
+
+  <script src="ads-config.js"></script>
+  <script src="analytics.js"></script>
+  <script src="i18n.js"></script>
+  <script src="i18n-es.js"></script>
+  <script src="i18n-pt.js"></script>
+  <script src="i18n-fr.js"></script>
+  <script src="i18n-de.js"></script>
+  <script src="i18n-ja.js"></script>
+  <script src="i18n-ko.js"></script>
+  <script src="i18n-zh.js"></script>
+  <script src="audio.js"></script>
+  <script src="story.js"></script>
+  <script src="story-trunks.js"></script>
+  <script src="story-timelines.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

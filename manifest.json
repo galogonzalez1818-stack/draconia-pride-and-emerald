@@ -1,0 +1,16 @@
+{
+  "name": "Pride & Emerald: Echoes of the Rift",
+  "short_name": "Pride & Emerald",
+  "description": "Multiverse Visual Novel & Dating Sim starring Draconia and Harry.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#07110d",
+  "theme_color": "#064e3b",
+  "icons": [
+    {
+      "src": "assets/draconia.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

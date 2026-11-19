@@ -2,10 +2,10 @@
  * Visual Novel Engine: "Pride & Emerald: Echoes of the Rift"
  */
 (() => {
-  const AUTO_SAVE_KEY = 'draconia_autosave_v2';
-  const MANUAL_SAVE_KEY = 'draconia_manualsave_v2';
-  const ENDINGS_KEY = 'draconia_endings_v2';
-  const LANG_KEY = 'draconia_lang_v1';
+  const AUTO_SAVE_KEY = 'draconia_autosave_v3';
+  const MANUAL_SAVE_KEY = 'draconia_manualsave_v3';
+  const ENDINGS_KEY = 'draconia_endings_v3';
+  const LANG_KEY = 'draconia_lang_v2';
 
   const CHAR_IMAGES = {
     harry: 'assets/harry.png',
@@ -38,12 +38,30 @@
     pamona: 'Professor Pamona',
     albuz: 'Headmaster Albuz',
     lucio: 'Lord Lucio',
-    thom: 'Thom',
+    thom: 'Lord Thom',
     belatrix: 'Belatrix',
     barti: 'Barti',
     piter: 'Piter',
     narrator: 'Narrator',
   };
+
+  const CHAR_NAMES_ES = {
+    severo: 'Profesor Severo',
+    minerba: 'Profesora Minerba',
+    remuz: 'Profesor Remuz',
+    pamona: 'Profesora Pamona',
+    albuz: 'Director Albuz',
+    thom: 'Lord Thom',
+    narrator: 'Narrador',
+  };
+
+  function getCharDisplayName(speaker) {
+    if (!speaker || speaker === 'narrator') {
+      return window.I18N?.ui?.[state.lang]?.narrator || 'Narrator';
+    }
+    if (state.lang === 'es' && CHAR_NAMES_ES[speaker]) return CHAR_NAMES_ES[speaker];
+    return CHAR_NAMES[speaker] || speaker;
+  }
 
   const state = {
     nodeId: 'intro_1',
@@ -64,7 +82,9 @@
     lastTickMs: null,
     adIntervalTimer: null,
     pendingAdBreak: false,
-    lang: localStorage.getItem(LANG_KEY) || 'en',
+    lang:
+      localStorage.getItem(LANG_KEY) ||
+      ((navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en'),
   };
 
   const screens = {
@@ -96,6 +116,8 @@
     imgDraconiaCorner: document.getElementById('img-draconia-corner'),
     imgEndingDraconia: document.getElementById('img-ending-draconia'),
     hudChapter: document.getElementById('hud-chapter'),
+    hudObjective: document.getElementById('hud-objective'),
+    objectiveBar: document.getElementById('objective-bar'),
     valAffection: document.getElementById('val-affection'),
     valSincerity: document.getElementById('val-sincerity'),
     valCourage: document.getElementById('val-courage'),
@@ -165,6 +187,7 @@
     screens[name].classList.add('active');
     if (name !== 'game') {
       stopAutoPlay();
+      window.duelEngine?.stop();
     }
   }
 
@@ -224,6 +247,20 @@
   function updateHud(node) {
     const chLabel = window.I18N?.chapters?.[state.lang]?.[node.chapter] || window.STORY.chapters[node.chapter] || '';
     el.hudChapter.textContent = chLabel;
+    if (el.hudObjective && el.objectiveBar) {
+      const objText =
+        (node.objective &&
+          (window.I18N?.objectives?.[state.lang]?.[node.objective] ||
+            window.STORY.objectives?.[node.objective])) ||
+        '';
+      if (objText) {
+        const prefix = window.I18N?.ui?.[state.lang]?.objectivePrefix || '🎯 Goal:';
+        el.hudObjective.textContent = `${prefix} ${objText}`;
+        el.objectiveBar.hidden = false;
+      } else {
+        el.objectiveBar.hidden = true;
+      }
+    }
     el.valAffection.textContent = state.affection;
     el.valSincerity.textContent = state.sincerity;
     el.valCourage.textContent = state.courage;
@@ -377,11 +414,7 @@
 
   function updateSpeaker(speaker) {
     el.speakerBadge.className = 'vn-name-tab';
-    if (speaker === 'narrator' || !speaker) {
-      el.speakerBadge.textContent = window.I18N?.ui?.[state.lang]?.narrator || 'Narrator';
-    } else {
-      el.speakerBadge.textContent = CHAR_NAMES[speaker] || speaker;
-    }
+    el.speakerBadge.textContent = getCharDisplayName(speaker);
     if (speaker) {
       el.speakerBadge.classList.add(speaker);
     }
@@ -420,6 +453,7 @@
     const node = window.STORY.nodes[nodeId];
     if (!node) return;
 
+    window.duelEngine?.stop();
     state.nodeId = nodeId;
     saveToKey(AUTO_SAVE_KEY);
 
@@ -459,10 +493,7 @@
     updateSpeaker(node.speaker);
 
     const localizedText = window.I18N?.nodes?.[state.lang]?.[nodeId] || node.text;
-    const speakerLabel =
-      node.speaker === 'narrator'
-        ? (window.I18N?.ui?.[state.lang]?.narrator || 'Narrator')
-        : (CHAR_NAMES[node.speaker] || 'Narrator');
+    const speakerLabel = getCharDisplayName(node.speaker);
     if (!state.log.length || state.log[state.log.length - 1].nodeId !== nodeId) {
       state.log.push({ nodeId, speaker: speakerLabel, text: localizedText });
     }
@@ -470,15 +501,82 @@
     el.choicesContainer.innerHTML = '';
     el.choicesContainer.hidden = true;
     screens.game.classList.remove('has-choices');
-    el.tapIndicator.style.visibility = node.choices ? 'hidden' : 'visible';
+    el.tapIndicator.style.visibility = node.choices || node.duel ? 'hidden' : 'visible';
 
     typeText(localizedText, () => {
       if (node.choices) {
         stopAutoPlay();
         showChoices(node);
+      } else if (node.duel && window.duelEngine) {
+        stopAutoPlay();
+        showDuelPrompt(node);
       } else if (state.autoPlay) {
         state.autoTimer = setTimeout(advanceDialogue, 2400);
       }
+    });
+  }
+
+  function showDuelPrompt(node) {
+    el.choicesContainer.innerHTML = '';
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn duel-start-btn';
+    btn.textContent = window.duelEngine.getStartButtonLabel(state.lang);
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      startNodeDuel(node);
+    });
+    el.choicesContainer.appendChild(btn);
+    el.choicesContainer.hidden = false;
+    screens.game.classList.add('has-choices');
+  }
+
+  function startNodeDuel(node) {
+    if (!window.duelEngine || !node.duel) return;
+    stopAutoPlay();
+    el.choicesContainer.innerHTML = '';
+    el.choicesContainer.hidden = true;
+    screens.game.classList.remove('has-choices');
+
+    const setDraconiaDuelExpr = (expr) => {
+      const base = 'assets/draconia.png';
+      if (expr && expr !== 'normal') {
+        setImageWithFallback(el.imgDraconiaCorner, `assets/draconia_${expr}.png`, base);
+      } else {
+        setImageWithFallback(el.imgDraconiaCorner, base, 'draconia.png');
+      }
+      if (el.slotDraconia) {
+        el.slotDraconia.classList.remove('dimmed', 'blushing', 'happy-glow');
+        el.slotDraconia.classList.add('speaking');
+        if (expr === 'happy') el.slotDraconia.classList.add('happy-glow');
+      }
+    };
+
+    window.duelEngine.start(node.duel, {
+      getLang: () => state.lang,
+      getCourage: () => state.courage,
+      setDraconiaDuelExpr,
+      setStageForDuel: (enemyKey, draconiaExpr) => {
+        if (el.stage) el.stage.dataset.count = '1';
+        setDraconiaDuelExpr(draconiaExpr || 'angry');
+        const enemySrc = CHAR_IMAGES[enemyKey] || 'assets/villain.png';
+        el.slotLeft.classList.remove('hidden', 'dimmed', 'blushing');
+        el.slotLeft.classList.add('speaking');
+        setImageWithFallback(el.imgLeft, enemySrc, enemySrc);
+        el.imgLeft.alt = CHAR_NAMES[enemyKey] || enemyKey;
+        el.slotRight.classList.add('hidden');
+      },
+      onVictory: (allyKey) => {
+        state.courage = clamp(state.courage + 10, 0, 100);
+        if (allyKey === 'harry') {
+          state.affection = clamp(state.affection + 5, 0, 100);
+        }
+        updateHud(node);
+        if (node.ending) {
+          resolveEndingByKey(node.ending);
+        } else if (node.next) {
+          renderNode(node.next);
+        }
+      },
     });
   }
 
@@ -555,7 +653,7 @@
   }
 
   function resolveEndingByKey(endingKey) {
-    const ending = window.STORY.endings[endingKey] || window.STORY.endings.solitude;
+    const ending = window.STORY.endings[endingKey] || window.STORY.endings.sovereign;
     saveUnlockedEnding(ending.id);
     localStorage.removeItem(AUTO_SAVE_KEY);
     window.GAME_ANALYTICS?.track('timeline_complete', { timeline: ending.id, language: state.lang });
@@ -570,11 +668,9 @@
       el.endCourage.textContent = state.courage;
       el.endMystery.textContent = state.mystery;
       if (el.imgEndingDraconia) {
-        const sadEndings = new Set(['echoes', 'solitude']);
-        const exprSrc = sadEndings.has(ending.id)
-          ? 'assets/draconia_sad.png'
-          : ending.id === 'mirror_queen'
-            ? 'assets/draconia.png'
+        const exprSrc =
+          ending.id === 'shadow_keeper'
+            ? 'assets/draconia_blush.png'
             : 'assets/draconia_happy.png';
         setImageWithFallback(el.imgEndingDraconia, exprSrc, 'assets/draconia.png');
       }
@@ -606,17 +702,23 @@
   }
 
   function advanceDialogue() {
+    if (window.duelEngine?.active) return;
     const node = window.STORY.nodes[state.nodeId];
     if (!node) return;
 
     if (state.isTyping) {
       finishTyping(() => {
         if (node.choices) showChoices(node);
+        else if (node.duel && window.duelEngine) showDuelPrompt(node);
       });
       return;
     }
 
     if (node.choices) return;
+    if (node.duel && window.duelEngine) {
+      startNodeDuel(node);
+      return;
+    }
 
     window.soundEngine.playClick();
     if (node.ending) {
@@ -890,7 +992,7 @@
       state.log = [];
       showScreen('game');
       start15MinuteAdTracker();
-      renderNode('c3_branch_choice');
+      renderNode('ep3_crossroads');
     });
   }
 
@@ -935,6 +1037,11 @@
       advanceDialogue();
     } else if (['Digit1', 'Digit2', 'Digit3', 'Digit4'].includes(e.code)) {
       const idx = Number(e.code.replace('Digit', '')) - 1;
+      if (window.duelEngine?.active) {
+        const actions = ['attack', 'shield', 'break', 'ult'];
+        window.duelEngine.playerAction(actions[idx]);
+        return;
+      }
       const btns = el.choicesContainer.querySelectorAll('.choice-btn');
       if (!el.choicesContainer.hidden && btns[idx]) {
         btns[idx].click();
@@ -943,16 +1050,17 @@
   });
 
   function applyLanguage(lang) {
-    state.lang = window.I18N?.ui?.[lang] ? lang : 'en';
+    state.lang = lang === 'es' ? 'es' : 'en';
     localStorage.setItem(LANG_KEY, state.lang);
     const t = window.I18N.ui[state.lang];
+    const totalEndings = Object.keys(window.STORY.endings).length;
 
     el.lblLanguage.textContent = `🌐 ${t.langLabel}`;
     el.titlePillTag.textContent = t.pillTag;
     el.titleSubtitle.innerHTML = t.subtitle;
     el.btnNewGame.textContent = t.newGame;
     el.btnContinue.textContent = t.continueGame;
-    el.btnGallery.innerHTML = `${t.gallery} (<span id="endings-count">${getUnlockedEndings().length}</span>/10)`;
+    el.btnGallery.innerHTML = `${t.gallery} (<span id="endings-count">${getUnlockedEndings().length}</span>/${totalEndings})`;
     el.endingsCount = document.getElementById('endings-count');
     el.btnPaypalTitle.textContent = t.donate;
     el.btnPaypalEnding.textContent = t.donate;
@@ -968,6 +1076,9 @@
     el.btnEndGallery.textContent = t.viewAll;
     el.btnGalleryBack.textContent = t.back;
     el.galleryTitle.textContent = t.galleryTitle;
+    if (el.btnJumpCrossroads && t.jumpCrossroads) {
+      el.btnJumpCrossroads.textContent = t.jumpCrossroads;
+    }
     el.historyTitle.textContent = t.historyTitle;
     el.settingsTitle.textContent = t.settingsTitle;
     el.lblMusicSfx.textContent = t.musicSfx;

@@ -1,216 +1,358 @@
 /**
- * ACT II: 5 MAJOR TRUNKS (tr1_* through tr5_*)
- * Each trunk runs ~16 scenes and splits into 2 distinct final timelines (10 total).
+ * EPISODE 4: THE EVE OF THE ECLIPSE (4 FULL BRANCHING SUB-EPISODES)
+ * =================================================================
+ * 4A: Starlight & Cider (Romance / Tsundere -> Endings 1 & 2)
+ * 4B: The Six-Star Circle (Academy Alliance -> Ending 3)
+ * 4C: Secrets of the Silver Cipher (Shadow / Severo -> Ending 4)
+ * 4D: The Weight of the Crest (Lord Lucio & Honor -> Ending 5)
  */
 window.VN_BUILD([
-  // ==================== TRUNK 1: HEART & SHADOW -> Splits into T1 (Sovereign) or T3 (Secret Devotion) ====================
+  // ============================================================================
+  // EPISODE 4A: STARLIGHT & CIDER (ROMANCE / TSUNDERE ROUTE)
+  // ============================================================================
   {
-    id: 'tr1_1', chapter: 4, music: 'mystery', bg: 'assets/bg_forest.jpg', chars: ['harry', 'remuz'], active: 'remuz', sfx: 'wind', speaker: 'remuz',
-    text: 'Keep your wands low, you two. The silver mist ahead is thickening—and look at the moss beneath our boots, it’s frozen solid.',
-    next: 'tr1_2',
+    id: 'e4a_1', chapter: 4, objective: 'ep4_romance', music: 'romance', bg: 'assets/bg_tower.jpg', chars: [], active: 'draconia', particles: 'sparkles', speaker: 'draconia', draconiaExpr: 'normal',
+    text: 'High atop the Astronomy Tower, frost glitters along the brass telescopes and the winter sky opens like black velvet sprinkled with diamonds. I wrap my cloak tighter, breathing slowly in the crisp air—until familiar hurried footsteps echo up the spiral stairs.',
+    next: 'e4a_2',
   },
   {
-    id: 'tr1_2', chapter: 4, music: 'romance', bg: 'assets/bg_forest.jpg', chars: ['harry'], active: 'harry', draconiaExpr: 'blush', speaker: 'harry',
-    text: 'Here, Draconia, take my scarf—your hands are shaking from the cold. Stay right behind me if anything moves in the trees.',
-    next: 'tr1_3',
+    id: 'e4a_2', chapter: 4, objective: 'ep4_romance', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', speaker: 'harry', draconiaExpr: 'happy',
+    text: 'Harry emerges onto the balcony balancing two steaming mugs of spiced apple cider. "Thought I’d find you up here," he says softly, handing me a mug. "One look at the Infirmary ceiling and I knew you needed fresh air."',
+    next: 'e4a_3',
   },
   {
-    id: 'tr1_3', chapter: 4, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['belatrix', 'piter'], active: 'belatrix', speaker: 'belatrix', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', draconiaExpr: 'angry',
-    text: 'Hahaha! Look at Harry playing bodyguard to little Draconia! How pathetic! In our timeline, you knelt to Lord Thom without a whisper of protest!',
-    next: 'tr1_4',
+    id: 'e4a_3', chapter: 4, objective: 'ep4_romance', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'happy',
+    text: 'The warm ceramic thaws my frozen fingers instantly. "Spiced cider with cinnamon—how on earth did you know that’s my favorite?" Harry grins sheepishly. "Ronn says I pay way too much attention whenever you’re in the Great Hall."',
+    next: 'e4a_4',
   },
   {
-    id: 'tr1_4', chapter: 4, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['barti', 'piter'], active: 'piter', speaker: 'piter',
-    text: 'I laid the Eclipse-Roots around the monoliths, Barti! Should we open the Mirror anchor right now?',
-    next: 'tr1_5',
+    id: 'e4a_4', chapter: 4, objective: 'ep4_romance', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', speaker: 'harry', draconiaExpr: 'sad',
+    text: 'We lean side-by-side against the stone railing overlooking the snowy grounds. After a moment, Harry’s voice drops gently. "Back in the Forest... what Belatrix said about another timeline where we lost. It shook you, didn’t it?"',
+    next: 'e4a_5',
   },
   {
-    id: 'tr1_5', chapter: 4, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['harry', 'remuz'], active: 'remuz', draconiaExpr: 'angry', speaker: 'remuz',
-    text: 'Three against three—Harry, Draconia, watch the flanking shadows! Barti’s curses are fast!',
-    next: 'tr1_6',
+    id: 'e4a_5', chapter: 4, objective: 'ep4_romance', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'sad',
+    text: 'I stare down at the swirling cinnamon in my mug. "Yes. Not because I’m afraid of Lord Thom... I’m terrified of a world where I stay behind my cold mask forever, and you aren’t in it, Harry."',
+    next: 'e4a_6',
   },
   {
-    id: 'tr1_6', chapter: 4, music: 'serious', bg: 'assets/bg_forest.jpg', chars: ['lucio', 'belatrix'], active: 'lucio', speaker: 'lucio',
-    text: 'Lower your wand immediately, Belatrix. I came to the Academy the moment Albuz sent word—and no follower of Thom’s madness will lay a finger on my daughter.',
-    next: 'tr1_7',
+    id: 'e4a_6', chapter: 4, objective: 'ep4_romance', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', sfx: 'sparkle', speaker: 'harry', draconiaExpr: 'surprised',
+    text: 'Harry sets his mug down and turns fully toward me. From inside his coat, he draws out a delicate new silver-emerald hairpin shaped like two intertwined laurel leaves. "Your old clasp snapped when you deflected Belatrix’s hex. I asked Professor Pamona and Lune to help me enchant a new one for you."',
+    next: 'e4a_7',
   },
   {
-    id: 'tr1_7', chapter: 4, music: 'serious', bg: 'assets/bg_forest.jpg', chars: ['lucio', 'barti'], active: 'lucio', speaker: 'lucio',
-    text: 'Our house carries ancient pride, never cowardice. Leave these grounds before I summon the entire faculty.',
-    next: 'tr1_8',
+    id: 'e4a_7', chapter: 4, objective: 'ep4_romance', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', sfx: 'heartbeat', speaker: 'harry', draconiaExpr: 'blush',
+    text: 'Slowly, he lifts his hand and tucks a loose strand of my platinum hair behind my ear, sliding the emerald pin gently into place. His palm lingers for a breathless second against my cheek. "I’m not going anywhere, Draconia. Forget house rivalries, forget rumors—I’ve fallen completely in love with you."',
+    next: 'e4a_choice',
   },
   {
-    id: 'tr1_8', chapter: 4, music: 'normal', bg: 'assets/bg_forest.jpg', chars: ['harry', 'lucio'], active: 'harry', draconiaExpr: 'happy', speaker: 'harry',
-    text: 'They retreated into the fog! Thank you, Lord Lucio—if you hadn’t arrived when you did, Barti would’ve flanked us.',
-    next: 'tr1_9',
-  },
-  {
-    id: 'tr1_9', chapter: 4, music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'draconia', draconiaExpr: 'happy', speaker: 'draconia',
-    text: 'I can’t sleep. My palms still tingle from the battle, and Lord Lucio’s quiet approval keeps echoing in my ears. I slip up to the Astronomy Tower for air—only to hear footsteps behind me. Harry, carrying two steaming mugs of spiced cider.',
-    next: 'tr1_10',
-  },
-  {
-    id: 'tr1_10', chapter: 4, music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', draconiaExpr: 'blush', speaker: 'harry',
-    text: 'My heart nearly stopped when you stepped in front of me to block Belatrix’s hex, Draconia. You’re terrifyingly brave—and I can’t stop looking at you.',
-    next: 'tr1_11',
-  },
-  {
-    id: 'tr1_11', chapter: 4, music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', draconiaExpr: 'blush', sfx: 'heartbeat', speaker: 'harry',
-    text: 'Forget house rivalries, forget what anyone whispers in the corridors. I’ve fallen for you, Draconia. Completely.',
-    next: 'tr1_split',
-  },
-  {
-    id: 'tr1_split', chapter: 4, music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'draconia', draconiaExpr: 'happy', speaker: 'draconia',
-    text: 'The cider mug warms my freezing fingers, yet my whole chest feels like it’s about to burst. For the first time in my life, I don’t want to hide behind pride.',
+    id: 'e4a_choice', chapter: 4, objective: 'ep4_romance', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'blush',
+    text: 'My whole chest feels like it’s glowing brighter than my mother’s locket. Under the winter stars, the boy I’ve secretly loved all year is waiting for my answer.',
     choices: [
-      { text: '"I’m done hiding, Harry. If this is real, let the whole Academy see us walk together."', effects: { affection: 20, sincerity: 25 }, next: 't1_1' },
-      { text: '"I love you too, Harry... but let’s keep it between us until the storm passes and I can speak to my father."', effects: { affection: 20, mystery: 10 }, next: 't3_1' },
+      {
+        text: 'Step into his warmth and rest my hand over his: "No more walls, Harry. I love you too—and tomorrow night, I want the whole Academy to see us together."',
+        effects: { affection: 25, sincerity: 25 },
+        setFlags: { openConfession: true },
+        next: 'e4a_8a',
+      },
+      {
+        text: 'Turn bright crimson and grip his collar lightly: "I-Idiot! Of course I’m in love with you—who else would I risk getting hexed for?! Just don’t get cocky about it!"',
+        effects: { affection: 25, courage: 10 },
+        setFlags: { tsundereConfession: true },
+        next: 'e4a_8b',
+      },
     ],
+  },
+  {
+    id: 'e4a_8a', chapter: 4, objective: 'ep4_romance', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', sfx: 'heartbeat', speaker: 'harry', draconiaExpr: 'happy',
+    text: 'Harry’s eyes shine with pure, overwhelming joy. He pulls me gently against his chest, his chin resting softly atop my silver hair as the warm winter stars wheel silently above us. For the first time in my life, I don’t feel cold at all.',
+    next: 'e4a_9',
+  },
+  {
+    id: 'e4a_8b', chapter: 4, objective: 'ep4_romance', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', sfx: 'heartbeat', speaker: 'harry', draconiaExpr: 'happy',
+    text: 'Harry bursts out laughing—a breathless, helplessly fond laugh—and pulls me close before I can hide my blushing face. "Never change, Draconia. Honestly, I wouldn’t trade that fierce blush for anything in the world."',
+    next: 'e4a_9',
+  },
+  {
+    id: 'e4a_9', chapter: 4, objective: 'ep4_romance', music: 'danger', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'narrator', fx: ['shake', 'flash-violet'], sfx: 'bell', speaker: 'narrator', draconiaExpr: 'surprised',
+    text: 'CLANG! CLANG! CLANG! The midnight alarm bell shatters the quiet night! Far below across the snowy ravine, violet flames erupt along the ancient arches of the Stone Bridge—Seal III!',
+    next: 'e4a_10',
+  },
+  {
+    id: 'e4a_10', chapter: 4, objective: 'ep4_romance', music: 'danger', bg: 'assets/bg_bridge.png', chars: ['barti'], active: 'barti', particles: 'snow', sfx: 'wind', speaker: 'barti', draconiaExpr: 'angry',
+    text: 'Harry and I sprint onto the wind-whipped Stone Bridge, wands already blazing! Through the blowing sleet, Barti stands atop the central keystone carving violet runes into the stone while Piter crouches behind a barrier.',
+    next: 'e4a_11',
+  },
+  {
+    id: 'e4a_11', chapter: 4, objective: 'ep4_romance', music: 'danger', bg: 'assets/bg_bridge.png', chars: ['barti'], active: 'barti', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', draconiaExpr: 'angry', speaker: 'barti',
+    duel: { enemy: 'barti', ally: 'harry', hp: 120 },
+    text: 'Barti spins toward us with a lethal grin: "How romantic! The proud heiress and her little hero arrived just in time to watch Seal III fall! Let’s see how your precious bond holds against my Rift Spears!"',
+    next: 'e4a_12',
+  },
+  {
+    id: 'e4a_12', chapter: 4, objective: 'ep4_romance', music: 'serious', bg: 'assets/bg_bridge.png', chars: ['lucio'], active: 'lucio', fx: ['flash-emerald'], sfx: 'magic', speaker: 'lucio', draconiaExpr: 'surprised',
+    text: 'As Barti staggers backward and vanishes in a burst of black smoke, heavy boots crunch across the snow behind us. Lord Lucio steps forward beside Professor Minerba—having witnessed Harry and me fighting back-to-back in seamless unison.',
+    next: 'e4a_13',
+  },
+  {
+    id: 'e4a_13', chapter: 4, objective: 'ep4_romance', music: 'romance', bg: 'assets/bg_bridge.png', chars: ['lucio'], active: 'lucio', speaker: 'lucio', draconiaExpr: 'happy',
+    text: 'Lord Lucio inspects the scorched bridge, then looks quietly from my new emerald hairpin to Harry’s protective stance beside me. "Your footwork was flawless, Draconia. And Harry... though your hair remains a crime against etiquette, you have courage worthy of standing beside my daughter."',
+    next: 'e4a_14',
+  },
+  {
+    id: 'e4a_14', chapter: 4, objective: 'ep5_climax', music: 'serious', bg: 'assets/bg_bridge.png', chars: ['harry'], active: 'harry', speaker: 'harry', draconiaExpr: 'normal',
+    text: 'We held the Bridge—yet Barti’s runes already scarred the keystone. Tomorrow night, when the Winter Ball Eclipse peaks, Lord Thom will force the Mirror Vault open himself. Harry squeezes my hand tightly: "Tomorrow night we finish this together—and then we claim our waltz."',
+    next: 'e5_rom_1',
   },
 
-  // ==================== TRUNK 2: THORNS & RIVALRY -> Splits into T2 (Thorns) or T4 (Guardians) ====================
+  // ============================================================================
+  // EPISODE 4B: THE SIX-STAR CIRCLE (ACADEMY ALLIANCE ROUTE)
+  // ============================================================================
   {
-    id: 'tr2_1', chapter: 5, music: 'normal', bg: 'assets/bg_forest.jpg', chars: ['harry', 'ronn'], active: 'ronn', speaker: 'ronn',
-    text: 'Remind me again why we let Draconia take point into the Enchanted Forest? She’s been glaring at the trees since we left the courtyard.',
-    next: 'tr2_2',
+    id: 'e4b_1', chapter: 4, objective: 'ep4_alliance', music: 'normal', bg: 'assets/bg_greenhouse.png', chars: ['pamona'], active: 'pamona', speaker: 'pamona', draconiaExpr: 'normal',
+    text: 'Refusing to face tomorrow’s Eclipse divided by old house rivalries, I send word through the castle—and within twenty minutes, Greenhouse Four is glowing like a warm lantern against the snow. Professor Pamona beams as we gather around the worktables.',
+    next: 'e4b_2',
   },
   {
-    id: 'tr2_2', chapter: 5, music: 'normal', bg: 'assets/bg_forest.jpg', chars: ['harry', 'ronn'], active: 'draconia', speaker: 'draconia',
-    text: '"Because unlike you two, Ronn, I actually memorized the outer ward-lines before stepping into the dark. Keep your voice down—there’s movement ahead."',
-    next: 'tr2_3',
+    id: 'e4b_2', chapter: 4, objective: 'ep4_alliance', music: 'normal', bg: 'assets/bg_greenhouse.png', chars: ['nevile'], active: 'nevile', speaker: 'nevile', draconiaExpr: 'happy',
+    text: 'Nevile carefully harvests six silver-veined Moon-Fern leaves, handing the brightest one straight to me. "I never imagined preparing battle-wards beside Draconia... honestly, thank you for trusting us. My hands aren’t even shaking anymore!"',
+    next: 'e4b_3',
   },
   {
-    id: 'tr2_3', chapter: 5, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['barti', 'belatrix'], active: 'barti', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', draconiaExpr: 'angry', speaker: 'barti',
-    text: 'Stop them! Piter already delivered the Eclipse-Roots—don’t let Harry anywhere near the portal!',
-    next: 'tr2_4',
+    id: 'e4b_3', chapter: 4, objective: 'ep4_alliance', music: 'normal', bg: 'assets/bg_greenhouse.png', chars: ['ronn'], active: 'ronn', speaker: 'ronn', draconiaExpr: 'happy',
+    text: 'Ronn leans against a potting bench chewing a peppermint toad. "Wait a second—Draconia just thanked Nevile without adding a single sarcastic footnote! Hermiona, check the sky, I think the moon just turned green!"',
+    next: 'e4b_4',
   },
   {
-    id: 'tr2_4', chapter: 5, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['harry', 'ronn'], active: 'ronn', fx: ['flash-emerald'], sfx: 'magic', draconiaExpr: 'angry', speaker: 'ronn',
-    text: 'Without hesitating, I step in front of Harry and deflect Barti’s curse straight back into the shadows. Ronn stares wide-eyed: "Blimey, Draconia... you didn’t even blink before shielding him."',
-    next: 'tr2_5',
+    id: 'e4b_4', chapter: 4, objective: 'ep4_alliance', music: 'normal', bg: 'assets/bg_greenhouse.png', chars: ['hermiona'], active: 'hermiona', speaker: 'hermiona', draconiaExpr: 'happy',
+    text: 'Before I can stop myself, a real, bright laugh escapes me—not a practiced aristocratic chuckle, a genuine laugh! Even Ronn freezes blinking, and Hermiona smiles warmly. "Honestly, Draconia, that smile suits you ten times better than your hallway glare."',
+    next: 'e4b_5',
   },
   {
-    id: 'tr2_5', chapter: 5, music: 'serious', bg: 'assets/bg_forest.jpg', chars: ['lucio', 'harry'], active: 'lucio', speaker: 'lucio',
-    text: 'Lord Lucio emerges from the treeline beside Professor Remuz’s patrol, forcing Belatrix and Barti to retreat. "Sharp reflexes, Draconia. Though I see your temper hasn’t softened."',
-    next: 'tr2_6',
+    id: 'e4b_5', chapter: 4, objective: 'ep4_alliance', music: 'romance', bg: 'assets/bg_greenhouse.png', chars: ['harry'], active: 'harry', mood: 'blush', speaker: 'harry', draconiaExpr: 'blush',
+    text: 'Beside the glass door, Harry is watching me with such soft, unguarded warmth that my cheeks instantly heat up. "Told you she wasn’t carved out of marble," he murmurs quietly, nudging my elbow as he hands me a cup of hot tea.',
+    next: 'e4b_6',
   },
   {
-    id: 'tr2_6', chapter: 5, music: 'normal', bg: 'assets/bg_infirmary.png', chars: ['hermiona', 'lune'], active: 'hermiona', draconiaExpr: 'blush', speaker: 'hermiona',
-    text: 'Back in the Infirmary, Hermiona finishes wrapping the scratch on Harry’s wrist. "Word travels fast, Draconia. Everyone knows you stepped in front of a dark curse for him."',
-    next: 'tr2_7',
+    id: 'e4b_6', chapter: 4, objective: 'ep4_alliance', music: 'mystery', bg: 'assets/bg_library.png', chars: ['lune'], active: 'lune', speaker: 'lune', draconiaExpr: 'surprised',
+    text: 'Up in the Library, we spread Hermiona’s castle blueprint across the floor. Lune traces six glowing star-points around the Mirror Vault. "Your mother’s locket wasn’t built to carry the burden alone, Draconia. When six different hearts channel through one circle, even a fractured Eclipse Seal cannot break."',
+    next: 'e4b_7',
   },
   {
-    id: 'tr2_7', chapter: 5, music: 'normal', bg: 'assets/bg_infirmary.png', chars: ['lune', 'nevile'], active: 'lune', draconiaExpr: 'blush', speaker: 'lune',
-    text: 'Lune smiles softly from the doorway. "You pretend to be annoyed, Draconia, yet you haven’t left his bedside since we got back."',
-    next: 'tr2_8',
+    id: 'e4b_7', chapter: 4, objective: 'ep4_alliance', music: 'normal', bg: 'assets/bg_library.png', chars: ['hermiona'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'happy',
+    text: 'Looking around the candlelit circle—Harry, Hermiona, Ronn, Lune, and Nevile—I realize something my father’s etiquette lessons never taught me. For the first time since I arrived at this Academy, I actually have friends.',
+    next: 'e4b_choice',
   },
   {
-    id: 'tr2_8', chapter: 5, music: 'romance', bg: 'assets/bg_infirmary.png', chars: ['harry'], active: 'harry', mood: 'blush', draconiaExpr: 'surprised', sfx: 'heartbeat', speaker: 'harry',
-    text: 'Once the others step out, Harry nervously pulls a small silver-emerald hairpin from his pocket. "I noticed yours broke in the Forest. It’s not much... but I wanted you to have it."',
-    next: 'tr2_split',
-  },
-  {
-    id: 'tr2_split', chapter: 5, music: 'romance', bg: 'assets/bg_infirmary.png', chars: ['harry', 'hermiona'], active: 'draconia', draconiaExpr: 'blush', speaker: 'draconia',
-    text: 'I stare at the delicate emerald hairpin resting in his palm. My throat goes tight—he actually noticed something so small in the middle of a fight.',
+    id: 'e4b_choice', chapter: 4, objective: 'ep4_alliance', music: 'normal', bg: 'assets/bg_library.png', chars: ['harry'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'happy',
+    text: 'Everyone looks to me to seal our pact before patrol begins. What do I tell them?',
     choices: [
-      { text: 'Take it quietly, hiding my blush: "You’re impossible, Harry... Fine. I’ll wear it, since you went to the trouble."', effects: { affection: 15 }, next: 't2_1' },
-      { text: 'Smile gently: "Keep it safe for me until after we stop Thom. Tonight, all six of us need to stay focused."', effects: { courage: 20 }, next: 't4_1' },
+      {
+        text: 'Raise my wand over the blueprint: "Six wands, no rival houses—tonight and tomorrow, we protect this Academy as equals!"',
+        effects: { courage: 20, sincerity: 15, affection: 10 },
+        next: 'e4b_8a',
+      },
+      {
+        text: 'Smirk fondly at Ronn and Harry: "Since none of you can follow a plan without my leadership, I’m officially taking command!"',
+        effects: { courage: 15, affection: 15 },
+        next: 'e4b_8b',
+      },
     ],
+  },
+  {
+    id: 'e4b_8a', chapter: 4, objective: 'ep4_alliance', music: 'romance', bg: 'assets/bg_library.png', chars: ['harry'], active: 'harry', sfx: 'sparkle', speaker: 'harry', draconiaExpr: 'happy',
+    text: 'Six wands tap together in a burst of emerald, crimson, blue, and gold sparks! Harry grins across the circle: "To the Six-Star Pact!"',
+    next: 'e4b_9',
+  },
+  {
+    id: 'e4b_8b', chapter: 4, objective: 'ep4_alliance', music: 'normal', bg: 'assets/bg_library.png', chars: ['ronn'], active: 'ronn', sfx: 'sparkle', speaker: 'ronn', draconiaExpr: 'happy',
+    text: 'Ronn groans dramatically while raising his wand anyway: "Aye-aye, Captain Draconia! Just don’t assign us extra essays afterward!" Everyone laughs as the circle flares bright.',
+    next: 'e4b_9',
+  },
+  {
+    id: 'e4b_9', chapter: 4, objective: 'ep4_alliance', music: 'danger', bg: 'assets/bg_bridge.png', chars: ['albuz'], active: 'albuz', particles: 'snow', fx: ['shake', 'flash-violet'], sfx: 'bell', speaker: 'albuz', draconiaExpr: 'surprised',
+    text: 'Midnight bells ring! Racing onto the snowy Stone Bridge, we find Headmaster Albuz and Professor Remuz holding back waves of shadow mist—while Barti drops straight onto the center arch to shatter Seal III!',
+    next: 'e4b_10',
+  },
+  {
+    id: 'e4b_10', chapter: 4, objective: 'ep4_alliance', music: 'danger', bg: 'assets/bg_bridge.png', chars: ['barti'], active: 'barti', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', draconiaExpr: 'angry', speaker: 'barti',
+    duel: { enemy: 'barti', ally: 'alliance', hp: 120 },
+    text: 'Barti sneers at our ring of glowing Moon-Fern shields: "A bunch of schoolkids playing soldier?! Let’s see how long your little friendship lasts against real dark magic!"',
+    next: 'e4b_11',
+  },
+  {
+    id: 'e4b_11', chapter: 4, objective: 'ep4_alliance', music: 'serious', bg: 'assets/bg_bridge.png', chars: ['albuz'], active: 'albuz', fx: ['flash-gold'], sfx: 'magic', speaker: 'albuz', draconiaExpr: 'happy',
+    text: 'Our Six-Star shield holds unbroken, launching Barti backward into his fleeing shadow-mist! Headmaster Albuz lowers his wand, his eyes twinkling with profound pride. "Remarkable. Six rival hearts beating as one—Draconia, your mother would be weeping with joy tonight."',
+    next: 'e4b_12',
+  },
+  {
+    id: 'e4b_12', chapter: 4, objective: 'ep5_climax', music: 'romance', bg: 'assets/bg_bridge.png', chars: ['harry'], active: 'harry', mood: 'blush', speaker: 'harry', draconiaExpr: 'happy',
+    text: 'Still catching our breath in the falling snow, Harry bumps my shoulder gently. "Even if the keystone cracked a little, Thom has no idea what’s waiting for him tomorrow night. Rest up for the Winter Ball, Captain."',
+    next: 'e5_all_1',
   },
 
-  // ==================== TRUNK 3: THE SIX-STAR PACT -> Splits into T4 (Guardians) or T9 (Vanguard) ====================
+  // ============================================================================
+  // EPISODE 4C: SECRETS OF THE SILVER CIPHER (SHADOW / SEVERO ROUTE)
+  // ============================================================================
   {
-    id: 'tr3_1', chapter: 6, music: 'serious', bg: 'assets/bg_library.png', chars: ['minerba', 'hermiona'], active: 'minerba', speaker: 'minerba',
-    text: 'Excellent work arriving at the Library promptly, Draconia. With Hermiona’s research and Lune’s star-sight, we’ve pinpointed the exact ley-line feeding Thom’s breach.',
-    next: 'tr3_2',
+    id: 'e4c_1', chapter: 4, objective: 'ep4_shadow', music: 'mystery', bg: 'assets/bg_potions.jpg', chars: ['severo'], active: 'severo', sfx: 'door', speaker: 'severo', draconiaExpr: 'normal',
+    text: 'After curfew, the Potions dungeon is silent save for the hiss of green embers. Professor Severo bolts the oak door with a flick of his wand and unrolls a silver-inked parchment across the stone desk.',
+    next: 'e4c_2',
   },
   {
-    id: 'tr3_2', chapter: 6, music: 'normal', bg: 'assets/bg_greenhouse.png', chars: ['nevile', 'pamona'], active: 'pamona', draconiaExpr: 'happy', speaker: 'pamona',
-    text: 'Following Minerba’s map, we hurry across the damp lawn into Greenhouse Four. Professor Pamona smiles as we enter: "Just in time! Nevile’s Moon-Ferns just bloomed into pure silver shields!"',
-    next: 'tr3_3',
+    id: 'e4c_2', chapter: 4, objective: 'ep4_shadow', music: 'mystery', bg: 'assets/bg_potions.jpg', chars: ['severo'], active: 'severo', speaker: 'severo', draconiaExpr: 'surprised',
+    text: '"You are certain you wish to walk this path, Draconia?" Severo’s dark voice is unusually quiet. "Your mother and I studied these counter-runes together fifteen years ago. They can turn Lord Thom’s dimensional mirror inward—caging him forever."',
+    next: 'e4c_3',
   },
   {
-    id: 'tr3_3', chapter: 6, music: 'normal', bg: 'assets/bg_greenhouse.png', chars: ['nevile', 'lune'], active: 'nevile', draconiaExpr: 'happy', speaker: 'nevile',
-    text: 'Nevile hands each of us a glowing silver leaf. "I never thought I’d be preparing battle-wards alongside Draconia... Thank you for trusting us, seriously."',
-    next: 'tr3_4',
+    id: 'e4c_3', chapter: 4, objective: 'ep4_shadow', music: 'mystery', bg: 'assets/bg_potions.jpg', chars: ['severo'], active: 'severo', speaker: 'severo', draconiaExpr: 'sad',
+    text: '"Yet shadow-wards demand complete solitude and control," Severo warns gravely. "If you invert the cipher alone, you risk bearing the Mirror’s backlash yourself—keeping Harry and the other students completely out of the line of fire, even if they never know what you sacrificed."',
+    next: 'e4c_4',
   },
   {
-    id: 'tr3_4', chapter: 6, music: 'serious', bg: 'assets/bg_bridge.png', chars: ['alaric', 'remuz'], active: 'alaric', sfx: 'wind', speaker: 'alaric',
-    text: 'Armed with the shields, we rush out to the Stone Bridge where Headmaster Albuz and Professor Remuz are guarding the outer gate. "Time is short—Belatrix, Barti, and Piter are already forcing the Mirror Vault below."',
-    next: 'tr3_5',
+    id: 'e4c_4', chapter: 4, objective: 'ep4_shadow', music: 'serious', bg: 'assets/bg_potions.jpg', chars: ['severo'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'normal',
+    text: 'I trace the shimmering silver runes with my wand tip, feeling my mother’s locket answer in a deep, steady hum. "If walking the shadows means Harry, my father, and this entire school get to dance safely tomorrow night... teach me everything, Professor."',
+    next: 'e4c_5',
   },
   {
-    id: 'tr3_5', chapter: 6, music: 'danger', bg: 'assets/bg_bridge.png', chars: ['harry', 'ronn'], active: 'harry', draconiaExpr: 'angry', speaker: 'harry',
-    text: 'Ronn and I just returned from the outer wall—the wards are shaking! Draconia, what’s the call?',
-    next: 'tr3_split',
+    id: 'e4c_5', chapter: 4, objective: 'ep4_shadow', music: 'serious', bg: 'assets/bg_potions.jpg', chars: ['severo'], active: 'severo', sfx: 'magic', speaker: 'severo', draconiaExpr: 'normal',
+    text: 'For two exhausting hours, Severo drills me ruthlessly in counter-ciphers, wandless ward-inversion, and mind-shielding—until silver fire spins effortlessly off my fingertips. For a fleeting second, a shadow of genuine pride crosses his austere face.',
+    next: 'e4c_6',
   },
   {
-    id: 'tr3_split', chapter: 6, music: 'serious', bg: 'assets/bg_bridge.png', chars: ['alaric', 'harry'], active: 'draconia', draconiaExpr: 'happy', speaker: 'draconia',
-    text: 'Cold wind whips across the Stone Bridge. Hermiona, Ronn, Lune, Nevile, and Harry are all waiting on my word—not because of my surname, but because they actually trust me.',
+    id: 'e4c_6', chapter: 4, objective: 'ep4_shadow', music: 'romance', bg: 'assets/bg_courtyard.png', chars: ['harry'], active: 'harry', particles: 'snow', speaker: 'harry', draconiaExpr: 'surprised',
+    text: 'Slipping out into the midnight Courtyard to trace the silver-ash trail before Thom’s agents strike Seal III, I nearly freeze when a familiar voice calls softly from the shadows of the arch. "Draconia? Where are you going this late—alone?"',
+    next: 'e4c_7',
+  },
+  {
+    id: 'e4c_7', chapter: 4, objective: 'ep4_shadow', music: 'romance', bg: 'assets/bg_courtyard.png', chars: ['harry'], active: 'harry', speaker: 'harry', draconiaExpr: 'sad',
+    text: 'Harry steps into the snowlight, eyes searching my face with quiet worry. "You’ve got that look again—the one where you think you have to carry the whole sky by yourself. Whatever Severo taught you down there, don’t shut me out. Let me come with you."',
+    next: 'e4c_choice',
+  },
+  {
+    id: 'e4c_choice', chapter: 4, objective: 'ep4_shadow', music: 'romance', bg: 'assets/bg_courtyard.png', chars: ['harry'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'sad',
+    text: 'My heart aches so badly it’s hard to breathe. Keeping him safe means keeping him away from the shadow-cipher—yet looking into his eyes makes lying almost impossible.',
     choices: [
-      { text: '"Let’s rally Harry, Hermiona, Ronn, Lune, and Nevile at the core—together the six of us can seal the Mirror!"', effects: { courage: 25 }, next: 't4_1' },
-      { text: '"Let me advance on the front line beside Headmaster Albuz and the professors to hold Thom back."', effects: { courage: 20, mystery: 10 }, next: 't9_1' },
+      {
+        text: 'Untie my emerald ribbon and press it into his hand: "Trust me tonight, Harry. Wait for me at the Winter Ball—I promise I’m coming back."',
+        effects: { affection: 20, sincerity: 15, mystery: 10 },
+        setFlags: { leftRibbonHarry: true },
+        next: 'e4c_8a',
+      },
+      {
+        text: 'Put my cold mask back on to protect him: "Stay in the castle, Harry. Shadow-magic isn’t a game for heroes—leave this to Severo and me."',
+        effects: { mystery: 25, courage: 10, affection: -10 },
+        next: 'e4c_8b',
+      },
     ],
+  },
+  {
+    id: 'e4c_8a', chapter: 4, objective: 'ep4_shadow', music: 'romance', bg: 'assets/bg_courtyard.png', chars: ['harry'], active: 'harry', mood: 'blush', speaker: 'harry', draconiaExpr: 'sad',
+    text: 'Harry’s fingers close tightly around my warm emerald ribbon. "You’d better keep that promise, Draconia," he whispers fiercely. "Because if you aren’t back before the Eclipse peaks, I’m tearing that Vault door down myself."',
+    next: 'e4c_9',
+  },
+  {
+    id: 'e4c_8b', chapter: 4, objective: 'ep4_shadow', music: 'serious', bg: 'assets/bg_courtyard.png', chars: ['harry'], active: 'harry', speaker: 'harry', draconiaExpr: 'sad',
+    text: 'Hurt flickers across Harry’s face, yet he doesn’t step aside until I slip past him into the mist. "You’re a terrible liar, Draconia," he calls softly into the snow. "I know you’re only doing this to protect us."',
+    next: 'e4c_9',
+  },
+  {
+    id: 'e4c_9', chapter: 4, objective: 'ep4_shadow', music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['belatrix'], active: 'belatrix', fx: ['shake', 'flash-violet'], sfx: 'wind', speaker: 'belatrix', draconiaExpr: 'angry',
+    text: 'Tracing the silver ash deep into the midnight Forest, I walk straight into Belatrix’s snare—exactly as Severo predicted! She steps from the shadows with a delighted cackle. "All alone without your boyfriend or daddy?! Oh, Lord Thom will reward me richly!"',
+    next: 'e4c_10',
+  },
+  {
+    id: 'e4c_10', chapter: 4, objective: 'ep4_shadow', music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['belatrix'], active: 'belatrix', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', draconiaExpr: 'angry', speaker: 'belatrix',
+    duel: { enemy: 'belatrix', ally: 'solo', hp: 125 },
+    text: 'Silver runes ignite like cold fire along my sleeve! Belatrix shrieks in sudden shock: "Counter-ciphers?! Who taught a child forbidden Vault magic?!"',
+    next: 'e4c_11',
+  },
+  {
+    id: 'e4c_11', chapter: 4, objective: 'ep5_climax', music: 'mystery', bg: 'assets/bg_forest.jpg', chars: ['severo'], active: 'severo', fx: ['flash-emerald'], sfx: 'magic', speaker: 'severo', draconiaExpr: 'normal',
+    text: 'Belatrix flees bleeding shadow-sparks into the night as Severo materializes silently from the treeline. "Flawless control, Draconia," he says quietly. "Tomorrow night, when the Winter Ball distracts the castle, we descend to the Mirror Vault and finish Lord Thom from the dark."',
+    next: 'e5_shd_1',
   },
 
-  // ==================== TRUNK 4: SECRETS OF THE GLASS -> Splits into T6 (Shadow Apprentice) or T7 (Echoes) or T8 (Mirror Queen) ====================
+  // ============================================================================
+  // EPISODE 4D: THE WEIGHT OF THE CREST (LORD LUCIO & HONOR ROUTE)
+  // ============================================================================
   {
-    id: 'tr4_1', chapter: 7, music: 'mystery', bg: 'assets/bg_potions.jpg', chars: ['severo'], active: 'severo', speaker: 'severo',
-    text: 'Close the dungeon door, Draconia. Few know this, but I once studied the Mirror Vault’s counter-runes. Thom’s portal is unstable—it can be turned against him.',
-    next: 'tr4_2',
+    id: 'e4d_1', chapter: 4, objective: 'ep4_honor', music: 'serious', bg: 'assets/bg_dorm.png', chars: ['lucio'], active: 'lucio', speaker: 'lucio', draconiaExpr: 'normal',
+    text: 'Late into the evening, the Emerald parlor glows with hearth-fire as Lord Lucio and I lay ancient family ward-scrolls across the dark mahogany table—the very scrolls my mother once studied.',
+    next: 'e4d_2',
   },
   {
-    id: 'tr4_2', chapter: 7, music: 'mystery', bg: 'assets/bg_potions.jpg', chars: ['severo'], active: 'severo', draconiaExpr: 'sad', speaker: 'severo',
-    text: 'However, tampering with parallel magic risks severing you from everyone you love—including Harry. Are you certain you wish to walk the shadows?',
-    next: 'tr4_3',
+    id: 'e4d_2', chapter: 4, objective: 'ep4_honor', music: 'serious', bg: 'assets/bg_dorm.png', chars: ['lucio'], active: 'lucio', speaker: 'lucio', draconiaExpr: 'sad',
+    text: 'For a long while, neither of us speaks. Then Father sets down his quill and looks quietly at my mother’s silver locket resting over my heart. "I was too hard on you these past years, Draconia."',
+    next: 'e4d_3',
   },
   {
-    id: 'tr4_3', chapter: 7, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['barti', 'piter'], active: 'piter', sfx: 'wind', draconiaExpr: 'angry', speaker: 'piter',
-    text: 'After memorizing Severo’s counter-runes, I slip out alone past curfew to trace the silver ash into the Enchanted Forest. Ahead of me, Piter freezes in the mist: "Look, Barti! Draconia’s alone—no Harry, no Albuz!"',
-    next: 'tr4_4',
+    id: 'e4d_3', chapter: 4, objective: 'ep4_honor', music: 'serious', bg: 'assets/bg_dorm.png', chars: ['lucio'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'surprised',
+    text: 'I blink in genuine disbelief—I have never once heard Lord Lucio admit a flaw. "Father...?"',
+    next: 'e4d_4',
   },
   {
-    id: 'tr4_4', chapter: 7, music: 'danger', bg: 'assets/bg_forest.jpg', chars: ['belatrix'], active: 'belatrix', draconiaExpr: 'angry', speaker: 'belatrix',
-    text: 'Belatrix steps from the shadows with a chilling grin. "Don’t touch her, fools! Her locket is drawing her straight to the hidden tunnel—let her walk right down to Lord Thom!"',
-    next: 'tr4_5',
+    id: 'e4d_4', chapter: 4, objective: 'ep4_honor', music: 'romance', bg: 'assets/bg_dorm.png', chars: ['lucio'], active: 'lucio', speaker: 'lucio', draconiaExpr: 'sad',
+    text: '"When your mother gave her strength to seal that Mirror, I thought if I forged you into impenetrable steel, nothing in this world could ever hurt you," Father says softly. "I never wanted you to be lonely, Draconia. True nobility isn’t coldness—it is standing upright so others can be safe."',
+    next: 'e4d_5',
   },
   {
-    id: 'tr4_5', chapter: 7, music: 'mystery', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'thom', sfx: 'door', draconiaExpr: 'surprised', speaker: 'thom',
-    text: 'Keeping my wand raised, I descend the stone passage beneath the roots until the obsidian Mirror Vault opens before me. Standing beside the glowing silver glass, Thom smiles: "At last, Draconia."',
-    next: 'tr4_split',
+    id: 'e4d_5', chapter: 4, objective: 'ep4_honor', music: 'romance', bg: 'assets/bg_dorm.png', chars: ['lucio'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'happy',
+    text: 'Warmth rises behind my eyes—for the first time in years, the heavy weight between us simply dissolves. "I’m proud to be your daughter, Father. Tomorrow night, we show Lord Thom what real honor looks like."',
+    next: 'e4d_6',
   },
   {
-    id: 'tr4_split', chapter: 7, music: 'mystery', bg: 'assets/bg_vault.jpg', chars: ['thom', 'severo'], active: 'draconia', draconiaExpr: 'sad', speaker: 'draconia',
-    text: 'Silver light spirals around my ankles like cold water. In that reflection, I see Harry’s worried face—and realize whatever I choose right now, I can never take back.',
+    id: 'e4d_6', chapter: 4, objective: 'ep4_honor', music: 'serious', bg: 'assets/bg_bridge.png', chars: ['harry'], active: 'harry', particles: 'snow', sfx: 'wind', speaker: 'harry', draconiaExpr: 'surprised',
+    text: 'Patrolling the snowy Stone Bridge before midnight, we encounter Harry and Hermiona reinforcing the outer lanterns. Harry steps forward through the drifting snow, green eyes steady. "Lord Lucio. Draconia. Whatever happened between our houses in the past... tomorrow night needs all of us."',
+    next: 'e4d_7',
+  },
+  {
+    id: 'e4d_7', chapter: 4, objective: 'ep4_honor', music: 'serious', bg: 'assets/bg_bridge.png', chars: ['lucio'], active: 'lucio', speaker: 'lucio', draconiaExpr: 'normal',
+    text: 'Lord Lucio regards Harry calmly, then turns his gaze to me. "The choice is yours, Draconia. Do we welcome Harry as an equal ally beside our house—or stand exclusively on our own?"',
+    next: 'e4d_choice',
+  },
+  {
+    id: 'e4d_choice', chapter: 4, objective: 'ep4_honor', music: 'serious', bg: 'assets/bg_bridge.png', chars: ['harry'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'normal',
+    text: 'Snowflakes whirl between my father and Harry. What kind of noble heir will I choose to be?',
     choices: [
-      { text: 'Give the agreed signal to Severo to invert the runes from the shadows and trap Thom.', effects: { courage: 20, mystery: 15 }, next: 't6_1' },
-      { text: 'Step through the Mirror’s silver light alone to close the breach from within and keep Harry safe.', effects: { mystery: 35 }, next: 't7_1' },
-      { text: 'Pretend to accept Thom’s offer so I can seize the Mirror’s crown at the final second.', effects: { mystery: 40, sincerity: -20 }, next: 't8_1' },
+      {
+        text: 'Extend my gloved hand to Harry with quiet dignity: "Stand with us as an equal, Harry. Honor grows stronger when it’s shared."',
+        effects: { courage: 20, affection: 15, sincerity: 15 },
+        setFlags: { nobleAlliance: true },
+        next: 'e4d_8a',
+      },
+      {
+        text: 'Lift my chin coolly: "Keep your friends safe inside, Harry. My family will finish what my mother started."',
+        effects: { courage: 20, mystery: 10, affection: -10 },
+        setFlags: { nobleSolitude: true },
+        next: 'e4d_8b',
+      },
     ],
   },
-
-  // ==================== TRUNK 5: THE ARISTOCRAT'S DUTY -> Splits into T5 (House Honor) or T10 (Solitude) ====================
   {
-    id: 'tr5_1', chapter: 8, music: 'serious', bg: 'assets/bg_dorm.png', chars: ['lucio'], active: 'lucio', draconiaExpr: 'sad', speaker: 'lucio',
-    text: 'Here in the Emerald Common Room, you hold yourself with admirable composure, Draconia. Yet remember: pride is a shield against dishonor, not a wall to shut out every ally.',
-    next: 'tr5_2',
+    id: 'e4d_8a', chapter: 4, objective: 'ep4_honor', music: 'romance', bg: 'assets/bg_bridge.png', chars: ['harry'], active: 'harry', mood: 'blush', speaker: 'harry', draconiaExpr: 'happy',
+    text: 'Harry grasps my hand firmly with a warm, relieved smile. "Glad to fight at your flank, Draconia." Beside me, Lord Lucio inclines his head in quiet approval.',
+    next: 'e4d_9',
   },
   {
-    id: 'tr5_2', chapter: 8, music: 'normal', bg: 'assets/bg_courtyard.png', chars: ['hermiona', 'nevile'], active: 'hermiona', speaker: 'hermiona',
-    text: 'Later that evening, as Father and I cross the Courtyard toward the main gates, Hermiona and Nevile intercept us breathlessly. "Draconia, Lord Lucio—we’re heading to the Vault with Albuz. Please, we need your help."',
-    next: 'tr5_3',
+    id: 'e4d_8b', chapter: 4, objective: 'ep4_honor', music: 'serious', bg: 'assets/bg_bridge.png', chars: ['harry'], active: 'harry', speaker: 'harry', draconiaExpr: 'sad',
+    text: 'Harry’s expression clouds with quiet regret, yet he nods respectfully. "I won’t let you face Thom alone tomorrow, Draconia—whether your pride likes it or not."',
+    next: 'e4d_9',
   },
   {
-    id: 'tr5_3', chapter: 8, music: 'serious', bg: 'assets/bg_bridge.png', chars: ['harry'], active: 'harry', sfx: 'wind', draconiaExpr: 'sad', speaker: 'harry',
-    text: 'Out on the snowy Stone Bridge where the faculty is assembling, Harry steps into my path one final time. "Whatever happened between our houses, Draconia, we need you down there. Will you stand with us—or stand alone?"',
-    next: 'tr5_split',
+    id: 'e4d_9', chapter: 4, objective: 'ep4_honor', music: 'danger', bg: 'assets/bg_bridge.png', chars: ['belatrix'], active: 'belatrix', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', speaker: 'belatrix', draconiaExpr: 'angry',
+    text: 'A shriek splits the snowstorm! Belatrix swoops down onto the Stone Bridge archway, furious sparks raining from her wand! "Traitorous Lucio! Raising your noble crest against Lord Thom’s new era?!"',
+    next: 'e4d_10',
   },
   {
-    id: 'tr5_split', chapter: 8, music: 'serious', bg: 'assets/bg_bridge.png', chars: ['harry', 'lucio'], active: 'draconia', draconiaExpr: 'sad', speaker: 'draconia',
-    text: 'Harry’s green eyes plead with me through the snow while my father stands silently beside me. My pride aches—why is letting someone in so terrifying?',
-    choices: [
-      { text: '"I will fight shoulder-to-shoulder with my father to defend this Academy—and earn your respect as an equal, Harry."', effects: { courage: 25, sincerity: 10 }, next: 't5_1' },
-      { text: '"Go play the hero with Ronn and Hermiona, Harry. My family needs no one."', effects: { affection: -30, sincerity: -25 }, next: 't10_1' },
-    ],
+    id: 'e4d_10', chapter: 4, objective: 'ep4_honor', music: 'danger', bg: 'assets/bg_bridge.png', chars: ['belatrix'], active: 'belatrix', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', draconiaExpr: 'angry', speaker: 'belatrix',
+    duel: { enemy: 'belatrix', ally: 'lucio', hp: 125 },
+    text: 'Lord Lucio plants his silver cane beside me: "Show her our family’s true discipline, Draconia!" Belatrix lunges forward in a storm of violet fire!',
+    next: 'e4d_11',
+  },
+  {
+    id: 'e4d_11', chapter: 4, objective: 'ep5_climax', music: 'serious', bg: 'assets/bg_bridge.png', chars: ['lucio'], active: 'lucio', fx: ['flash-emerald'], sfx: 'magic', speaker: 'lucio', draconiaExpr: 'happy',
+    text: 'Our twin emerald shields shatter Belatrix’s assault, hurling her howling back into the blizzard! Lord Lucio straightens his silver cloak with unmistakable pride. "Well fought, Draconia. Tomorrow night, we end Lord Thom once and for all."',
+    next: 'e5_hon_1',
   },
 ]);

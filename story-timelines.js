@@ -1,117 +1,307 @@
 /**
- * ACT III: 10 DISTINCT FINAL TIMELINES (t1_* through t10_*)
- * Every timeline has its own climax, aftermath, and ending.
+ * EPISODE 5: THE WINTER BALL & THE SHATTERED MIRROR
+ * =================================================
+ * Full Cinematic Finale, Final Boss Duels vs. Lord Thom (2 Phases),
+ * and 5 Rich, Multi-Scene Epilogues!
  */
 window.VN_BUILD([
-  // ==================== TIMELINE 1: SOVEREIGN OF HEARTS ====================
-  { id: 't1_1', chapter: 11, music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', draconiaExpr: 'happy', speaker: 'harry',
-    text: 'Wait—you really mean that? No more hiding from Ronn, Hermiona, or anyone else? You’ve no idea how happy that makes me, Draconia.', next: 't1_2' },
-  { id: 't1_2', chapter: 11, music: 'serious', bg: 'assets/bg_vault.jpg', chars: ['alaric', 'severo'], active: 'alaric', speaker: 'alaric',
-    text: 'Dawn is breaking, and Thom’s ritual has begun inside the Mirror Vault. Severo and I will hold the outer pillars—Harry and Draconia, advance to the core!', next: 't1_3' },
-  { id: 't1_3', chapter: 11, music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom', 'harry'], active: 'thom', speaker: 'thom', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', draconiaExpr: 'angry',
-    text: 'Pathetic! A proud daughter of nobility holding hands with my rival?! Your locket belongs to my world, Draconia—give it to me!', next: 't1_4' },
-  { id: 't1_4', chapter: 11, music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['harry', 'belatrix'], active: 'harry', draconiaExpr: 'angry', speaker: 'harry', fx: ['shake', 'flash-emerald'], sfx: 'magic',
-    text: 'Together, Draconia—on three! Channel everything into the silver glass!', next: 't1_5' },
-  { id: 't1_5', chapter: 11, music: 'normal', bg: 'assets/bg_ball.jpg', chars: ['ronn', 'hermiona'], active: 'ronn', draconiaExpr: 'happy', speaker: 'ronn',
-    text: 'Three nights later, with Thom banished and the shattered Mirror safely sealed, the Grand Hall shines for the Winter Ball. Ronn grins across the punch table: "Best victory party we’ve ever had!"', next: 't1_6' },
-  { id: 't1_6', chapter: 11, music: 'serious', bg: 'assets/bg_ball.jpg', chars: ['lucio', 'harry'], active: 'lucio', draconiaExpr: 'happy', speaker: 'lucio',
-    text: 'You upheld our family’s honor with courage, Draconia. And Harry... for a boy with hopelessly untidy hair, you’ve earned my respect.', next: 't1_7' },
-  { id: 't1_7', chapter: 11, music: 'romance', bg: 'assets/bg_ball.jpg', chars: ['harry'], active: 'harry', mood: 'blush', draconiaExpr: 'happy', speaker: 'harry',
-    text: 'May I have this dance, Draconia? No more walls, no more pride between us—just you and me.', ending: 'sovereign' },
+  // ============================================================================
+  // EPISODE 5A: ROMANCE / TSUNDERE CLIMAX -> ENDINGS 1 & 2
+  // ============================================================================
+  {
+    id: 'e5_rom_1', chapter: 5, objective: 'ep5_climax', music: 'romance', bg: 'assets/bg_ball.jpg', chars: ['harry'], active: 'draconia', particles: 'snow', speaker: 'draconia', draconiaExpr: 'blush',
+    text: 'The night of the Winter Ball arrives. Enchanted snow drifts lazily beneath a thousand floating golden candles in the Great Hall. As I descend the grand marble stairs in my tailored emerald-and-silver ball gown, Harry freezes mid-step near the archway—completely speechless.',
+    next: 'e5_rom_2',
+  },
+  {
+    id: 'e5_rom_2', chapter: 5, objective: 'ep5_climax', music: 'romance', bg: 'assets/bg_ball.jpg', chars: ['harry'], active: 'harry', mood: 'blush', sfx: 'heartbeat', speaker: 'harry', draconiaExpr: 'happy',
+    text: 'Even his messy hair looks suspiciously combed tonight—and he actually took my advice on his tailored dark coat! Harry exhales softly, taking my gloved hand. "Draconia... you’re breathtaking. Seriously, I forgot every single word I practiced."',
+    next: 'e5_rom_3',
+  },
+  {
+    id: 'e5_rom_3', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_ball.jpg', chars: ['albuz'], active: 'narrator', fx: ['shake', 'flash-violet'], sfx: 'glass', speaker: 'narrator', draconiaExpr: 'surprised',
+    text: 'Just as the orchestra lifts its bows for the opening waltz—CRACK! Every tall mirror lining the Great Hall shatters into swirling violet light! Outside the windows, the winter moon turns blood-violet: the Eclipse has begun! Headmaster Albuz raises a golden barrier to shield the students.',
+    next: 'e5_rom_4',
+  },
+  {
+    id: 'e5_rom_4', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'thom', sfx: 'dark_magic', speaker: 'thom', draconiaExpr: 'angry',
+    text: 'Harry and I race straight beneath the hall into the obsidian Mirror Vault while Albuz, Severo, and Lord Lucio hold off Belatrix’s minions above! At the center of the glowing silver glass stands Lord Thom—tall, pale, and radiating chilling parallel-world power.',
+    next: 'e5_rom_5',
+  },
+  {
+    id: 'e5_rom_5', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'thom', speaker: 'thom', draconiaExpr: 'angry',
+    text: '"Look at you, Draconia," Lord Thom mocks, gesturing toward the swirling mirror showing a cold, solitary reflection of me kneeling in dark robes. "Holding hands with my greatest rival! Surrender your mother’s locket and claim the throne you were born for—before I erase Harry from both worlds!"',
+    next: 'e5_rom_6',
+  },
+  {
+    id: 'e5_rom_6', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['harry'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'angry',
+    text: 'I step firmly beside Harry, my fingers gripping my wand as my mother’s silver locket blazes with radiant emerald fire! "That lonely ghost in your mirror isn’t me, Thom—and it never will be! You’re not touching Harry, and you’re not touching our world!"',
+    next: 'e5_rom_boss',
+  },
+  {
+    id: 'e5_rom_boss', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'thom', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', draconiaExpr: 'angry', speaker: 'thom',
+    duel: { enemy: 'thom', ally: 'harry', hp: 170 },
+    text: 'Lord Thom raises his obsidian wand in cold fury as the entire Vault shakes: "Foolish girl! Then let the Eclipse swallow you and Harry together!"',
+    next: 'e5_rom_after',
+  },
+  {
+    id: 'e5_rom_after', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_vault.jpg', chars: ['harry'], active: 'harry', fx: ['flash-gold'], sfx: 'sparkle', speaker: 'harry', draconiaExpr: 'happy',
+    text: 'Our wands lock together! Emerald light from my mother’s locket surges through Harry’s spell, blasting Lord Thom back into the collapsing rift and sealing the obsidian Mirror into quiet, harmless silver crystal forever! Harry catches me breathless in his arms. "We did it, Draconia... it’s finally over!"',
+    next: 'e5_rom_choice',
+  },
+  {
+    id: 'e5_rom_choice', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_ball.jpg', chars: ['harry'], active: 'draconia', particles: 'snow', speaker: 'draconia', draconiaExpr: 'happy',
+    text: 'An hour later, the Great Hall shines brighter than ever—repaired by Headmaster Albuz as the Winter Ball bursts into a joyous victory celebration! The orchestra strikes up a slow golden waltz, and Harry bows before me with a crooked, glowing grin. How do I claim this night?',
+    choices: [
+      {
+        text: '💚 Smile openly and take his hand in front of the entire Academy: "No more hiding, Harry—this waltz is ours." (Ending 1: Sovereign of Hearts)',
+        effects: { affection: 20, sincerity: 20 },
+        next: 'end_sov_1',
+      },
+      {
+        text: '🌹 Blush bright red and lift my chin playfully: "F-Fine, one waltz—just try not to step on my gown, idiot!" (Ending 2: Thorns & Roses)',
+        effects: { affection: 20, courage: 10 },
+        next: 'end_tho_1',
+      },
+    ],
+  },
 
-  // ==================== TIMELINE 2: THORNS & ROSES ====================
-  { id: 't2_1', chapter: 12, music: 'romance', bg: 'assets/bg_infirmary.png', chars: ['harry'], active: 'harry', mood: 'blush', draconiaExpr: 'blush', speaker: 'harry',
-    text: 'Harry’s whole face softens when I pin it into my hair. "I knew emerald suited you, Draconia."', next: 't2_2' },
-  { id: 't2_2', chapter: 12, music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom', 'harry'], active: 'harry', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', draconiaExpr: 'angry', speaker: 'harry',
-    text: 'Down in the Mirror Vault, spells flash across the obsidian pillars. "Watch your left, Draconia! And when we get out of here, you’re finally admitting you were worried about me!"', next: 't2_3' },
-  { id: 't2_3', chapter: 12, music: 'serious', bg: 'assets/bg_vault.jpg', chars: ['severo', 'piter'], active: 'severo', speaker: 'severo',
-    text: 'Severo binds Piter’s wand and reinforces the outer circle. "Save the arguments for later, both of you—seal the central pillar while Thom’s shield is broken!"', next: 't2_4' },
-  { id: 't2_4', chapter: 12, music: 'normal', bg: 'assets/bg_ball.jpg', chars: ['hermiona', 'ronn'], active: 'hermiona', draconiaExpr: 'blush', speaker: 'hermiona',
-    text: 'Three evenings later at the Winter Ball—with Thom’s rift finally sealed—Hermiona smiles knowingly at us. "Still insisting you two are just rivals, Draconia?"', next: 't2_5' },
-  { id: 't2_5', chapter: 12, music: 'romance', bg: 'assets/bg_ball.jpg', chars: ['harry'], active: 'harry', mood: 'blush', draconiaExpr: 'happy', speaker: 'harry',
-    text: 'Harry extends his hand with a teasing grin. "Come on, Draconia. Just one waltz—you can go back to pretending I annoy you tomorrow."', ending: 'thorns' },
+  // --- ENDING 1: SOVEREIGN OF HEARTS (TRUE OPEN ROMANCE — 6 FULL SCENES) ---
+  {
+    id: 'end_sov_1', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_ball.jpg', chars: ['ronn'], active: 'ronn', speaker: 'ronn', draconiaExpr: 'happy',
+    text: 'Across the punch table, Ronn’s jaw literally drops as Harry and I step hand-in-hand onto the center of the crystal floor. "Hermiona! Pinch me—Draconia is smiling like the sun and holding Harry’s hand in front of the whole school!" Hermiona just laughs and holds out her palm: "That’ll be five silver coins, Ronn."',
+    next: 'end_sov_2',
+  },
+  {
+    id: 'end_sov_2', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_ball.jpg', chars: ['lucio'], active: 'lucio', speaker: 'lucio', draconiaExpr: 'happy',
+    text: 'Near the emerald pillars, Lord Lucio watches us glide across the floor, raising a crystal goblet slightly toward me. When the music pauses, he approaches with calm aristocratic poise. "You honored your mother’s legacy tonight, Draconia—and stood beside the one your heart chose without flinching."',
+    next: 'end_sov_3',
+  },
+  {
+    id: 'end_sov_3', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_ball.jpg', chars: ['lucio'], active: 'lucio', speaker: 'lucio', draconiaExpr: 'happy',
+    text: 'Father glances dryly at Harry, whose collar has somehow gone slightly crooked again. "Take good care of her, young Harry. And for heaven’s sake, let her help you fix your tie before photographs." Harry grins earnestly: "I promise, Lord Lucio—every single day."',
+    next: 'end_sov_4',
+  },
+  {
+    id: 'end_sov_4', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'draconia', particles: 'snow', speaker: 'draconia', draconiaExpr: 'happy',
+    text: 'Later, we slip away from the cheering crowd onto the starlit terrace above the hall, where soft snow dances in the warm lantern glow. My mother’s silver locket rests cool and peaceful against my heart—its long watch finally complete.',
+    next: 'end_sov_5',
+  },
+  {
+    id: 'end_sov_5', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', sfx: 'heartbeat', speaker: 'harry', draconiaExpr: 'blush',
+    text: 'Harry brushes a melting snowflake gently from my cheek, his emerald-green eyes filled with nothing but tenderness. "You know, everyone used to call you the Ice Heiress, Draconia... they never had a clue how warm your heart really is."',
+    next: 'end_sov_6',
+  },
+  {
+    id: 'end_sov_6', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'draconia', sfx: 'sparkle', speaker: 'draconia', draconiaExpr: 'happy',
+    text: '"Only because you were stubborn enough to stay until I took the mask off," I whisper with a radiant smile as he leans in beneath the winter stars. Pride and emerald, heart to heart—our real story is only just beginning.',
+    ending: 'sovereign',
+  },
 
-  // ==================== TIMELINE 3: EMERALD & GOLD (SECRET DEVOTION) ====================
-  { id: 't3_1', chapter: 13, music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', draconiaExpr: 'blush', speaker: 'harry',
-    text: 'A secret just between us? Honestly... I like the sound of that. Nobody’s expectations, nobody watching—just you and me.', next: 't3_2' },
-  { id: 't3_2', chapter: 13, music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom', 'harry'], active: 'thom', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', draconiaExpr: 'angry', speaker: 'thom',
-    text: 'At dawn we slip down to the Mirror Vault beside Lord Lucio and the professors. Seeing my locket, Thom raises his wand in fury: "You dare defy me, Draconia?! That heirloom was meant to open the sky for my empire!"', next: 't3_3' },
-  { id: 't3_3', chapter: 13, music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['harry', 'lucio'], active: 'harry', fx: ['flash-emerald'], sfx: 'magic', draconiaExpr: 'angry', speaker: 'harry',
-    text: 'Watch out! With Lord Lucio holding Thom back, cast the sealing charm with me right now, Draconia!', next: 't3_4' },
-  { id: 't3_4', chapter: 13, music: 'normal', bg: 'assets/bg_ball.jpg', chars: ['hermiona', 'ronn'], active: 'ronn', speaker: 'ronn',
-    text: 'Three nights after our victory, the Winter Ball is in full swing. Across the room, Ronn squints in confusion: "Weird... Harry and Draconia barely spoke all evening, yet they both keep glancing toward the Astronomy Tower."', next: 't3_5' },
-  { id: 't3_5', chapter: 13, music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', draconiaExpr: 'happy', sfx: 'heartbeat', speaker: 'harry',
-    text: 'Up on the quiet, starlit balcony away from the music, Harry catches his breath with a warm grin. "Made it past curfew without Ronn noticing. Happy Winter Ball, my secret emerald queen."', ending: 'secret_devotion' },
+  // --- ENDING 2: THORNS & ROSES (TSUNDERE ROMANCE — 6 FULL SCENES) ---
+  {
+    id: 'end_tho_1', chapter: 5, objective: 'ep5_epilogue', music: 'normal', bg: 'assets/bg_ball.jpg', chars: ['hermiona'], active: 'hermiona', speaker: 'hermiona', draconiaExpr: 'blush',
+    text: 'As Harry leads me onto the dance floor while I furiously whisper instructions about his posture, Hermiona catches my eye and smiles knowingly. "Still insisting you two are strictly rivals, Draconia?"',
+    next: 'end_tho_2',
+  },
+  {
+    id: 'end_tho_2', chapter: 5, objective: 'ep5_epilogue', music: 'normal', bg: 'assets/bg_ball.jpg', chars: ['harry'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'blush',
+    text: '"O-Obviously! Somebody has to keep him from tripping over his own robes in front of Headmaster Albuz!" I protest indignantly—though my hand refuses to let go of Harry’s warm shoulder for even a second.',
+    next: 'end_tho_3',
+  },
+  {
+    id: 'end_tho_3', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_ball.jpg', chars: ['harry'], active: 'harry', mood: 'blush', speaker: 'harry', draconiaExpr: 'blush',
+    text: 'Harry spins me effortlessly—surprisingly graceful!—and leans close to my burning ear. "For the record, I practiced waltzing with Ronn for two hours yesterday just so you wouldn’t have anything to scold me about tonight."',
+    next: 'end_tho_4',
+  },
+  {
+    id: 'end_tho_4', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', particles: 'snow', mood: 'blush', sfx: 'heartbeat', speaker: 'harry', draconiaExpr: 'surprised',
+    text: 'When the song ends, Harry draws me gently out onto the quiet snowy balcony overlooking the lake. Before I can deliver another proud lecture, he lifts my gloved hand softly and presses a warm, lingering kiss to my knuckles.',
+    next: 'end_tho_5',
+  },
+  {
+    id: 'end_tho_5', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'blush',
+    text: 'My entire brain completely short-circuits! "H-Harry! You can’t just do that without warning a lady of my station!" Harry laughs softly, eyes sparkling. "Oh? Should I ask permission before I hold your hand tomorrow morning at breakfast too?"',
+    next: 'end_tho_6',
+  },
+  {
+    id: 'end_tho_6', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'draconia', sfx: 'sparkle', speaker: 'draconia', draconiaExpr: 'happy',
+    text: 'Unable to hold back my smile any longer, I let out a soft laugh and lace my fingers stubbornly through his. "Idiot... you don’t need permission anymore." Even roses keep a few thorns—and Harry wouldn’t trade mine for the world.',
+    ending: 'thorns',
+  },
 
-  // ==================== TIMELINE 4: THE SIX-STAR ALLIANCE ====================
-  { id: 't4_1', chapter: 14, music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['barti', 'piter'], active: 'barti', draconiaExpr: 'angry', speaker: 'barti',
-    text: 'Impossible! How did these six brats counter every single trap we laid in the chamber?!', next: 't4_2' },
-  { id: 't4_2', chapter: 14, music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['alaric', 'remuz'], active: 'alaric', fx: ['flash-gold'], sfx: 'magic', speaker: 'alaric',
-    text: 'Professors Minerba, Severo, Remuz, and Pamona—hold the outer ring! Six students must link wands at the Mirror’s center to banish Thom!', next: 't4_3' },
-  { id: 't4_3', chapter: 14, music: 'serious', bg: 'assets/bg_vault.jpg', chars: ['lucio', 'nevile'], active: 'lucio', draconiaExpr: 'happy', speaker: 'lucio',
-    text: 'Seeing six young witches and wizards from rival houses fight as one... perhaps the old ways truly needed to change. Well led, Draconia.', next: 't4_4' },
-  { id: 't4_4', chapter: 14, music: 'normal', bg: 'assets/bg_ball.jpg', chars: ['hermiona', 'ronn'], active: 'hermiona', draconiaExpr: 'happy', speaker: 'hermiona',
-    text: 'Three nights later at the Winter Ball, with Thom’s breach sealed forever, Hermiona raises her glass. "Six wands, one unbroken shield! We didn’t just save the Academy—we proved we’re unstoppable together."', next: 't4_5' },
-  { id: 't4_5', chapter: 14, music: 'normal', bg: 'assets/bg_ball.jpg', chars: ['harry', 'lune'], active: 'harry', draconiaExpr: 'happy', speaker: 'harry',
-    text: 'To the Guardians of the Rift! Romance can wait—tonight, I’m just proud to call you my closest friend, Draconia.', ending: 'guardians' },
+  // ============================================================================
+  // EPISODE 5B: SIX-STAR ALLIANCE CLIMAX -> ENDING 3 (GUARDIANS)
+  // ============================================================================
+  {
+    id: 'e5_all_1', chapter: 5, objective: 'ep5_climax', music: 'normal', bg: 'assets/bg_ball.jpg', chars: ['hermiona'], active: 'hermiona', particles: 'snow', speaker: 'hermiona', draconiaExpr: 'happy',
+    text: 'The Winter Ball glitters under enchanted snowfall! For the very first time in Academy history, all six of us—Harry, Hermiona, Ronn, Lune, Nevile, and I—arrive together in our dress robes, sharing jokes like we’ve been best friends for years.',
+    next: 'e5_all_2',
+  },
+  {
+    id: 'e5_all_2', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_ball.jpg', chars: ['albuz'], active: 'narrator', fx: ['shake', 'flash-violet'], sfx: 'glass', speaker: 'narrator', draconiaExpr: 'surprised',
+    text: 'Suddenly the tall mirrors crack with violet fire as the Eclipse darkens the sky! Headmaster Albuz nods gravely toward our circle: "The professors will hold the Great Hall—Six-Star Circle, descend to the Mirror Vault and end Lord Thom!"',
+    next: 'e5_all_3',
+  },
+  {
+    id: 'e5_all_3', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'thom', sfx: 'dark_magic', speaker: 'thom', draconiaExpr: 'angry',
+    text: 'Down in the obsidian Vault, Lord Thom sneers in disgust as our six glowing Moon-Fern wards form a blazing hexagonal star around the Mirror. "A proud emerald heiress standing shoulder-to-shoulder with common house rivals?! Your mother’s noble blood is wasted on you!"',
+    next: 'e5_all_4',
+  },
+  {
+    id: 'e5_all_4', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'angry',
+    text: 'Nevile strengthens our shield, Lune predicts the rift currents, Hermiona chants the binding ward, Ronn flanks left, and Harry locks eyes with me on my right! "You know nothing about my mother’s pride, Thom—our strength is unity!"',
+    next: 'e5_all_boss',
+  },
+  {
+    id: 'e5_all_boss', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'thom', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', draconiaExpr: 'angry', speaker: 'thom',
+    duel: { enemy: 'thom', ally: 'alliance', hp: 170 },
+    text: 'Lord Thom erupts in dark lightning, trying to shatter our six-point circle: "Then watch your fragile alliance crumble into ash!"',
+    next: 'end_grd_1',
+  },
+  {
+    id: 'end_grd_1', chapter: 5, objective: 'ep5_epilogue', music: 'normal', bg: 'assets/bg_vault.jpg', chars: ['harry'], active: 'harry', fx: ['flash-gold'], sfx: 'sparkle', speaker: 'harry', draconiaExpr: 'happy',
+    text: 'Six beams of magic converge through my mother’s silver locket in a blinding starlight pillar! Lord Thom is hurled back into the collapsing rift, and the Mirror seals shut with a crystalline chime!',
+    next: 'end_grd_2',
+  },
+  {
+    id: 'end_grd_2', chapter: 5, objective: 'ep5_epilogue', music: 'normal', bg: 'assets/bg_ball.jpg', chars: ['ronn'], active: 'ronn', particles: 'snow', speaker: 'ronn', draconiaExpr: 'happy',
+    text: 'Back upstairs at the restored Winter Ball, the entire Academy erupts into deafening applause as all six of us walk back in dusted with silver stardust! Ronn throws an arm cheerfully toward the air: "Six wands, zero dark lords! Someone bring us triple punch!"',
+    next: 'end_grd_3',
+  },
+  {
+    id: 'end_grd_3', chapter: 5, objective: 'ep5_epilogue', music: 'normal', bg: 'assets/bg_ball.jpg', chars: ['lune'], active: 'lune', speaker: 'lune', draconiaExpr: 'happy',
+    text: 'Lune places a tiny silver star-blossom beside my ear, smiling serenely. "Look around the hall, Draconia. Nobody is whispering out of fear anymore—everyone is smiling at you."',
+    next: 'end_grd_4',
+  },
+  {
+    id: 'end_grd_4', chapter: 5, objective: 'ep5_epilogue', music: 'serious', bg: 'assets/bg_ball.jpg', chars: ['lucio'], active: 'lucio', speaker: 'lucio', draconiaExpr: 'happy',
+    text: 'Even Lord Lucio approaches our table—and astonishes Hermiona and Nevile by offering them a genuine, courteous bow. "Seeing rival houses stand unbroken under my daughter’s guidance... perhaps the old walls truly needed to fall. Well led, Draconia."',
+    next: 'end_grd_5',
+  },
+  {
+    id: 'end_grd_5', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_ball.jpg', chars: ['harry'], active: 'harry', mood: 'blush', sfx: 'heartbeat', speaker: 'harry', draconiaExpr: 'blush',
+    text: 'When the final slow song begins, Harry steps up beside me with a warm, slightly shy grin while Ronn and Hermiona pull Nevile and Lune onto the floor. "Hey, Captain... before the night ends, can I steal you for the last dance—just the two of us?"',
+    next: 'end_grd_6',
+  },
+  {
+    id: 'end_grd_6', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_ball.jpg', chars: ['harry'], active: 'draconia', sfx: 'sparkle', speaker: 'draconia', draconiaExpr: 'happy',
+    text: 'I slip my hand happily into his, surrounded by real friends and the boy who helped me break free of my cage. "I thought you’d never ask, Harry." Together, we are the Guardians of the Six-Star Rift—and tomorrow looks brighter than ever.',
+    ending: 'guardians',
+  },
 
-  // ==================== TIMELINE 5: PRIDE OF THE ARISTOCRAT ====================
-  { id: 't5_1', chapter: 15, music: 'serious', bg: 'assets/bg_vault.jpg', chars: ['lucio', 'harry'], active: 'lucio', speaker: 'lucio',
-    text: 'Very well. Stand at my right hand, Draconia. Harry—take the left flank. Let Thom witness what true noble discipline looks like.', next: 't5_2' },
-  { id: 't5_2', chapter: 15, music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['lucio', 'belatrix'], active: 'belatrix', draconiaExpr: 'angry', speaker: 'belatrix',
-    text: 'Traitorous Lucio! Raising your cane against your own sister-in-arms?!', next: 't5_3' },
-  { id: 't5_3', chapter: 15, music: 'serious', bg: 'assets/bg_vault.jpg', chars: ['lucio', 'thom'], active: 'lucio', draconiaExpr: 'angry', speaker: 'lucio',
-    text: 'Our lineage answers to honor, never to madness. Now, Draconia—seal the Mirror!', next: 't5_4' },
-  { id: 't5_4', chapter: 15, music: 'normal', bg: 'assets/bg_ball.jpg', chars: ['harry', 'lucio'], active: 'harry', draconiaExpr: 'happy', speaker: 'harry',
-    text: 'Days later at the Winter Ball, after our combined spell banished Thom for good, Harry approaches Father and me with genuine warmth. "You two were incredible down there, Draconia. You’ve earned my deepest respect."', ending: 'house_honor' },
+  // ============================================================================
+  // EPISODE 5C: SHADOW CIPHER CLIMAX -> ENDING 4 (KEEPER OF THE SILVER SHADOW)
+  // ============================================================================
+  {
+    id: 'e5_shd_1', chapter: 5, objective: 'ep5_climax', music: 'mystery', bg: 'assets/bg_ball.jpg', chars: ['severo'], active: 'draconia', particles: 'snow', speaker: 'draconia', draconiaExpr: 'normal',
+    text: 'Above us, violin music drifts from the glittering Winter Ball—students laughing safely, unaware that the Eclipse moon is rising. Wrapped in a dark emerald cloak, I slip silently past the stone arches beside Professor Severo toward the hidden Vault passage.',
+    next: 'e5_shd_2',
+  },
+  {
+    id: 'e5_shd_2', chapter: 5, objective: 'ep5_climax', music: 'mystery', bg: 'assets/bg_vault.jpg', chars: ['severo'], active: 'severo', sfx: 'door', speaker: 'severo', draconiaExpr: 'normal',
+    text: 'Inside the freezing obsidian Mirror Vault, silver mist spirals off the glass. Severo draws his wand beside me, his voice low and steady. "Remember the counter-cipher, Draconia. When Lord Thom steps through, we turn his own dimensional tether into a prison—before a single student upstairs is harmed."',
+    next: 'e5_shd_3',
+  },
+  {
+    id: 'e5_shd_3', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'thom', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', speaker: 'thom', draconiaExpr: 'angry',
+    text: 'Violet fire explodes across the Vault! Lord Thom steps out from the shattered glass—and halts in stunned outrage at the glowing silver runes Severo and I have already woven around his feet! "Severo?! You betrayed the dark arts to teach a schoolgirl the forbidden counter-cipher?!"',
+    next: 'e5_shd_4',
+  },
+  {
+    id: 'e5_shd_4', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'angry',
+    text: 'My mother’s silver locket blazes like starlight over my chest as my shadow-runes lock onto Thom’s wand. "You wanted a daughter of darkness, Thom? Then witness what shadow looks like when it protects the people I love!"',
+    next: 'e5_shd_boss',
+  },
+  {
+    id: 'e5_shd_boss', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'thom', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', draconiaExpr: 'angry', speaker: 'thom',
+    duel: { enemy: 'thom', ally: 'severo', hp: 170 },
+    text: 'Lord Thom roars as obsidian shards storm through the cavern: "You dare cage ME?! Break before the Mirror!"',
+    next: 'end_shd_1',
+  },
+  {
+    id: 'end_shd_1', chapter: 5, objective: 'ep5_epilogue', music: 'mystery', bg: 'assets/bg_vault.jpg', chars: ['severo'], active: 'severo', fx: ['flash-emerald'], sfx: 'glass', speaker: 'severo', draconiaExpr: 'surprised',
+    text: 'With one final whispered counter-rune, the silver cipher snaps shut! Lord Thom’s scream vanishes as the Mirror collapses cleanly into a silent obsidian seal—not a single window shattered in the Winter Ball above!',
+    next: 'end_shd_2',
+  },
+  {
+    id: 'end_shd_2', chapter: 5, objective: 'ep5_epilogue', music: 'serious', bg: 'assets/bg_potions.jpg', chars: ['severo'], active: 'severo', speaker: 'severo', draconiaExpr: 'happy',
+    text: 'Minutes later in the quiet dungeon corridor, Severo hands me back my cooled silver locket, his stern eyes holding rare, unmistakable respect. "Extraordinary discipline, Draconia. Your mother possessed that exact quiet courage. The school may never know who saved them tonight—yet I will not forget."',
+    next: 'end_shd_3',
+  },
+  {
+    id: 'end_shd_3', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_tower.jpg', chars: [], active: 'draconia', particles: 'snow', speaker: 'draconia', draconiaExpr: 'sad',
+    text: 'Too exhausted to join the cheering crowd below, I climb up to the snowy Astronomy Tower to catch my breath, listening to the distant waltz music drifting up from the Great Hall. They’re all safe. Harry is safe. That’s all that matters.',
+    next: 'end_shd_4',
+  },
+  {
+    id: 'end_shd_4', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', sfx: 'door', speaker: 'harry', draconiaExpr: 'surprised',
+    text: 'The stairwell door creaks open behind me. I spin around—to find Harry standing breathless in his Winter Ball coat, holding my emerald ribbon tightly in his hand! "Told you I’d find you, Draconia. Severo let it slip where you went."',
+    next: 'end_shd_5',
+  },
+  {
+    id: 'end_shd_5', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'harry', mood: 'blush', sfx: 'heartbeat', speaker: 'harry', draconiaExpr: 'blush',
+    text: 'Harry steps up beside me in the falling snow, gently tying my emerald ribbon back around my wrist. "You saved every single person down there without asking for a word of applause. You don’t have to walk the shadows alone anymore, Draconia—because I’m right here."',
+    next: 'end_shd_6',
+  },
+  {
+    id: 'end_shd_6', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'draconia', sfx: 'sparkle', speaker: 'draconia', draconiaExpr: 'happy',
+    text: 'Tears of relief warm my cheeks as I rest my head quietly against his shoulder while distant waltz music swells beneath the stars. The silent guardian of the Academy—no longer alone in the dark.',
+    ending: 'shadow_keeper',
+  },
 
-  // ==================== TIMELINE 6: STUDENT OF SHADOWS ====================
-  { id: 't6_1', chapter: 16, music: 'mystery', bg: 'assets/bg_vault.jpg', chars: ['severo', 'thom'], active: 'severo', fx: ['flash-emerald'], sfx: 'magic', draconiaExpr: 'angry', speaker: 'severo',
-    text: 'Now, Draconia! Invert the silver runes I taught you—turn Thom’s own dimensional tether into a cage!', next: 't6_2' },
-  { id: 't6_2', chapter: 16, music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom', 'severo'], active: 'thom', fx: ['shake', 'flash-violet'], sfx: 'glass', draconiaExpr: 'surprised', speaker: 'thom',
-    text: 'Severo?! You taught her the counter-cipher?! No—the Mirror is collapsing inward!', next: 't6_3' },
-  { id: 't6_3', chapter: 16, music: 'serious', bg: 'assets/bg_potions.jpg', chars: ['severo'], active: 'severo', draconiaExpr: 'happy', speaker: 'severo',
-    text: 'The next afternoon in his quiet dungeon office, Severo sets down the sealed locket. "Remarkable control. Few students possess the discipline to command shadow-wards without being consumed by them. You have a true gift, Draconia."', next: 't6_4' },
-  { id: 't6_4', chapter: 16, music: 'mystery', bg: 'assets/bg_hall.jpg', chars: ['harry'], active: 'harry', draconiaExpr: 'happy', speaker: 'harry',
-    text: 'Up in the Great Hall, students cheer the return of peace. Harry catches my eye across the crowd and walks over quietly. "Nobody else knows it was you and Severo who dismantled Thom’s ritual from the dark. Thank you, Draconia."', ending: 'shadow_apprentice' },
-
-  // ==================== TIMELINE 7: ECHOES OF ANOTHER WORLD ====================
-  { id: 't7_1', chapter: 17, music: 'mystery', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'draconia', draconiaExpr: 'angry', speaker: 'draconia',
-    text: '"I’m sealing this rift from the inside, Thom—so Harry, my father, and this Academy never have to bleed for your war."', next: 't7_2' },
-  { id: 't7_2', chapter: 17, music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['harry', 'thom'], active: 'harry', draconiaExpr: 'sad', speaker: 'harry',
-    text: 'Draconia, NO! Don’t step into the Mirror alone—grab my hand!', next: 't7_3' },
-  { id: 't7_3', chapter: 17, music: 'mystery', bg: 'assets/bg_vault.jpg', chars: ['harry'], active: 'draconia', draconiaExpr: 'sad', speaker: 'draconia',
-    text: 'I smile at him one last time through the silver light as the glass seals shut, dragging Thom back into the void.', next: 't7_4' },
-  { id: 't7_4', chapter: 17, music: 'mystery', bg: 'assets/bg_tower.jpg', chars: ['harry'], active: 'narrator', draconiaExpr: 'sad', speaker: 'narrator',
-    text: 'Only a single emerald ribbon drifted onto the stone floor—proof that somewhere beyond the stars, Draconia is still watching over him.', ending: 'echoes' },
-
-  // ==================== TIMELINE 8: QUEEN OF THE SHATTERED MIRROR ====================
-  { id: 't8_1', chapter: 18, music: 'mystery', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'thom', speaker: 'thom',
-    text: 'Wise choice, Draconia. Take the silver crown of the Mirror—together we shall rule both realities!', next: 't8_2' },
-  { id: 't8_2', chapter: 18, music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'draconia', draconiaExpr: 'angry', speaker: 'draconia',
-    text: '"Together? You misunderstand me, Thom. There is only room for *one* sovereign in this vault."', next: 't8_3' },
-  { id: 't8_3', chapter: 18, music: 'mystery', bg: 'assets/bg_vault.jpg', chars: ['harry', 'alaric'], active: 'alaric', speaker: 'alaric',
-    text: 'By the stars... she banished Thom—yet she kept the Mirror’s silver crown for herself. What have you become, Draconia?', next: 't8_4' },
-  { id: 't8_4', chapter: 18, music: 'mystery', bg: 'assets/bg_tower.jpg', chars: [], active: 'narrator', draconiaExpr: 'sad', speaker: 'narrator',
-    text: 'From the shadows of the Mirror Vault, I guard both timelines in secret—feared by dark sorcerers, and forever out of Harry’s reach.', ending: 'mirror_queen' },
-
-  // ==================== TIMELINE 9: UNBROKEN DAWN ====================
-  { id: 't9_1', chapter: 19, music: 'serious', bg: 'assets/bg_vault.jpg', chars: ['alaric', 'minerba'], active: 'minerba', draconiaExpr: 'angry', speaker: 'minerba',
-    text: 'Stand firm beside us, Draconia! Remuz and Pamona are holding the left arch—now channel your ward with the Headmaster!', next: 't9_2' },
-  { id: 't9_2', chapter: 19, music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['remuz', 'pamona'], active: 'remuz', fx: ['flash-gold'], sfx: 'magic', draconiaExpr: 'angry', speaker: 'remuz',
-    text: 'Thom’s shield is cracking! One more surge of golden light!', next: 't9_3' },
-  { id: 't9_3', chapter: 19, music: 'normal', bg: 'assets/bg_hall.jpg', chars: ['alaric', 'minerba'], active: 'alaric', draconiaExpr: 'happy', speaker: 'alaric',
-    text: 'The next morning in the restored Great Hall, Headmaster Albuz addresses the school beside Professor Minerba. "Rarely have I seen a student match the discipline of our senior faculty. The Academy owes you a great debt, Draconia."', next: 't9_4' },
-  { id: 't9_4', chapter: 19, music: 'serious', bg: 'assets/bg_ball.jpg', chars: ['harry'], active: 'harry', draconiaExpr: 'happy', speaker: 'harry',
-    text: 'That evening at the Winter Ball, Harry raises a goblet toward me. "You fought like a true champion alongside Albuz and Minerba. Even if your heart belongs to duty, I’ll always admire you, Draconia."', ending: 'vanguard' },
-
-  // ==================== TIMELINE 10: WINTER SOLITUDE ====================
-  { id: 't10_1', chapter: 20, music: 'serious', bg: 'assets/bg_tower.jpg', chars: ['minerba'], active: 'minerba', draconiaExpr: 'sad', speaker: 'minerba',
-    text: 'After Harry leaves with a hurt look, I retreat up to the Astronomy Tower. Professor Minerba pauses at the door: "Wait here if you must, Draconia. Keep watch over the upper wards while the rest of us descend into the Vault."', next: 't10_2' },
-  { id: 't10_2', chapter: 20, music: 'serious', bg: 'assets/bg_ball.jpg', chars: ['alaric', 'severo'], active: 'alaric', draconiaExpr: 'sad', speaker: 'alaric',
-    text: 'Three nights later, music rises from the Winter Ball below. In the Great Hall, Headmaster Albuz announces their victory: "Harry, Hermiona, Ronn, Lune, and Nevile sealed the Mirror Vault. The Academy is safe."', next: 't10_3' },
-  { id: 't10_3', chapter: 20, music: 'serious', bg: 'assets/bg_ball.jpg', chars: ['harry', 'hermiona'], active: 'harry', draconiaExpr: 'sad', speaker: 'harry',
-    text: 'Everyone’s cheering... I just wish Draconia had let us reach her.', next: 't10_4' },
-  { id: 't10_4', chapter: 20, music: 'serious', bg: 'assets/bg_tower.jpg', chars: [], active: 'narrator', draconiaExpr: 'sad', speaker: 'narrator',
-    text: 'From the snowy balcony high above the Winter Ball, I watch Harry laughing far below. My aristocratic mask is completely intact—and colder than ever.', ending: 'solitude' },
+  // ============================================================================
+  // EPISODE 5D: ARISTOCRAT'S HONOR CLIMAX -> ENDING 5 (PRIDE OF THE EMERALD HOUSE)
+  // ============================================================================
+  {
+    id: 'e5_hon_1', chapter: 5, objective: 'ep5_climax', music: 'serious', bg: 'assets/bg_ball.jpg', chars: ['lucio'], active: 'lucio', particles: 'snow', speaker: 'lucio', draconiaExpr: 'normal',
+    text: 'When the Winter Ball begins, Lord Lucio escorts me down the grand staircase—emerald silk and silver filigree gleaming beneath the floating candles. Whispers hush into genuine awe as we take our watch near the high table beside Headmaster Albuz.',
+    next: 'e5_hon_2',
+  },
+  {
+    id: 'e5_hon_2', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_ball.jpg', chars: ['lucio'], active: 'narrator', fx: ['shake', 'flash-violet'], sfx: 'glass', speaker: 'narrator', draconiaExpr: 'surprised',
+    text: 'Then the Eclipse strikes! Violet shockwaves fracture the stone floor, and the secret seal beneath the hall tears open! Without a moment’s hesitation, Lord Lucio raises his silver cane beside me: "With me, Draconia! Show this dark pretender what ancient honor looks like!"',
+    next: 'e5_hon_3',
+  },
+  {
+    id: 'e5_hon_3', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'thom', sfx: 'dark_magic', speaker: 'thom', draconiaExpr: 'angry',
+    text: 'Inside the Mirror Vault, Lord Thom stares down at us with venom in his eyes. "Lord Lucio! In my timeline, noble houses knelt before my throne! Why do you throw away supreme power for a school full of weaklings?!"',
+    next: 'e5_hon_4',
+  },
+  {
+    id: 'e5_hon_4', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['lucio'], active: 'draconia', speaker: 'draconia', draconiaExpr: 'angry',
+    text: 'Standing proudly at my father’s right hand as emerald family wards blaze across the floor, I answer before Father even speaks: "Because true nobility protects the realm—it never kneels to tyrants like you, Thom! Now face House Emerald!"',
+    next: 'e5_hon_boss',
+  },
+  {
+    id: 'e5_hon_boss', chapter: 5, objective: 'ep5_climax', music: 'danger', bg: 'assets/bg_vault.jpg', chars: ['thom'], active: 'thom', fx: ['shake', 'flash-violet'], sfx: 'dark_magic', draconiaExpr: 'angry', speaker: 'thom',
+    duel: { enemy: 'thom', ally: 'lucio', hp: 170 },
+    text: 'Lord Thom snarls, hurling dark fire across the obsidian pillars: "Then let your precious noble lineage burn with this Vault!"',
+    next: 'end_hon_1',
+  },
+  {
+    id: 'end_hon_1', chapter: 5, objective: 'ep5_epilogue', music: 'serious', bg: 'assets/bg_vault.jpg', chars: ['lucio'], active: 'lucio', fx: ['flash-gold'], sfx: 'sparkle', speaker: 'lucio', draconiaExpr: 'happy',
+    text: 'Father’s ancestral barrier and my mother’s silver locket resonate in blinding emerald harmony! The wave shatters Thom’s obsidian wand and slams the dimensional Mirror sealed forever!',
+    next: 'end_hon_2',
+  },
+  {
+    id: 'end_hon_2', chapter: 5, objective: 'ep5_epilogue', music: 'normal', bg: 'assets/bg_ball.jpg', chars: ['albuz'], active: 'albuz', particles: 'snow', speaker: 'albuz', draconiaExpr: 'happy',
+    text: 'When we ascend back into the restored Great Hall, Headmaster Albuz himself leads the entire Academy in a standing ovation. "Tonight, House Emerald proved that true pride is measured by courage and sacrifice. The Academy owes you a lasting debt, Draconia!"',
+    next: 'end_hon_3',
+  },
+  {
+    id: 'end_hon_3', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_ball.jpg', chars: ['lucio'], active: 'lucio', speaker: 'lucio', draconiaExpr: 'happy',
+    text: 'Lord Lucio rests his hand warmly on my shoulder, his eyes glistening with unspoken emotion. "You have surpassed anything I ever dreamed for you, my daughter. Your mother is smiling down on us tonight."',
+    next: 'end_hon_4',
+  },
+  {
+    id: 'end_hon_4', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_ball.jpg', chars: ['harry'], active: 'harry', mood: 'blush', speaker: 'harry', draconiaExpr: 'blush',
+    text: 'As the victory waltz starts up again, Harry walks calmly across the shining floor and offers me a surprisingly proper, deeply respectful bow. "You and Lord Lucio were extraordinary down there, Draconia. Would the champion of House Emerald honor me with a dance—as equals?"',
+    next: 'end_hon_5',
+  },
+  {
+    id: 'end_hon_5', chapter: 5, objective: 'ep5_epilogue', music: 'romance', bg: 'assets/bg_ball.jpg', chars: ['harry'], active: 'draconia', sfx: 'sparkle', speaker: 'draconia', draconiaExpr: 'happy',
+    text: 'I glance briefly at Father—who gives a single, dignified nod—and then place my hand gracefully into Harry’s with a genuine, radiant smile. "Only if you can keep up, Harry." My pride is no longer a wall—it is a crown of emerald light.',
+    ending: 'emerald_heir',
+  },
 ]);

@@ -23,21 +23,15 @@
         <div class="lang-bar">
           <label for="select-language" id="lbl-language" class="lang-label">🌐 Language</label>
           <select id="select-language" class="setting-select">
-            <option value="en">🇺🇸 English</option>
             <option value="es">🇪🇸 Español</option>
-            <option value="pt">🇧🇷 Português</option>
-            <option value="fr">🇫🇷 Français</option>
-            <option value="de">🇩🇪 Deutsch</option>
-            <option value="ja">🇯🇵 日本語</option>
-            <option value="ko">🇰🇷 한국어</option>
-            <option value="zh">🇨🇳 中文</option>
+            <option value="en">🇺🇸 English</option>
           </select>
         </div>
 
-        <span id="title-pill-tag" class="pill-tag">Multiverse Visual Novel • 10 Timelines</span>
+        <span id="title-pill-tag" class="pill-tag">5-Episode Visual Novel • 5 Endings</span>
         <h1 class="game-title">Pride &amp; Emerald</h1>
         <p id="title-subtitle" class="game-subtitle">
-          Echoes of the Rift — Step into <strong>Draconia’s</strong> world as dimensional fractures threaten the Academy and her guarded heart collides with <strong>Harry</strong>.
+          Echoes of the Rift — Step into <strong>Draconia’s</strong> world across 5 full episodes of romance, Academy life, noble honor, and magical duels alongside <strong>Harry</strong>.
         </p>
 
         <div class="title-portraits">
@@ -55,7 +49,7 @@
         <div class="title-actions">
           <button id="btn-new-game" class="btn btn-primary">✨ New Story</button>
           <button id="btn-continue" class="btn btn-secondary" hidden>📖 Continue Saved Game</button>
-          <button id="btn-gallery" class="btn btn-ghost">🏆 Timelines Gallery (<span id="endings-count">0</span>/10)</button>
+          <button id="btn-gallery" class="btn btn-ghost">🏆 Endings Gallery (<span id="endings-count">0</span>/5)</button>
           <a id="btn-paypal-title" class="btn btn-paypal" href="#" target="_blank" rel="noopener noreferrer">☕ Support via PayPal</a>
         </div>
 
@@ -100,8 +94,53 @@
         </div>
       </header>
 
+      <!-- Current Arc Objective Pill (keeps the story goal crystal clear) -->
+      <div id="objective-bar" class="objective-bar">
+        <span id="hud-objective" class="objective-pill glass">🎯 Goal: Survive breakfast without losing composure around Harry</span>
+      </div>
+
+      <!-- Magical Duel HUD (only visible during interactive enemy duels) -->
+      <div id="duel-hud" class="duel-hud" hidden>
+        <div class="duel-card duel-player glass">
+          <div class="duel-card-top">
+            <span class="duel-fighter-name emerald-text">Draconia</span>
+            <span id="duel-player-hp-text" class="duel-hp-num">100 / 100</span>
+          </div>
+          <div class="duel-bar-track">
+            <div id="duel-player-hp-fill" class="duel-bar-fill hp-player" style="width: 100%"></div>
+          </div>
+          <div class="duel-res-row">
+            <span id="duel-res-label" class="duel-res-label">Locket Resonance</span>
+            <span id="duel-res-text" class="duel-res-num">25%</span>
+          </div>
+          <div class="duel-bar-track thin">
+            <div id="duel-res-fill" class="duel-bar-fill res-gold" style="width: 25%"></div>
+          </div>
+        </div>
+
+        <div class="duel-card duel-enemy glass">
+          <div class="duel-card-top">
+            <div class="duel-enemy-title-wrap">
+              <span id="duel-enemy-name" class="duel-fighter-name crimson-text">Belatrix</span>
+              <span id="duel-enemy-phase" class="duel-phase-pill">PHASE 1</span>
+              <span id="duel-enemy-ward" class="duel-ward-pill" hidden>🛡️ WARD</span>
+            </div>
+            <span id="duel-enemy-hp-text" class="duel-hp-num">115 / 115</span>
+          </div>
+          <div class="duel-bar-track">
+            <div id="duel-enemy-hp-fill" class="duel-bar-fill hp-enemy" style="width: 100%"></div>
+          </div>
+          <div id="duel-enemy-intent" class="duel-intent intent-bolt">⚡ Next: Dark Bolt</div>
+        </div>
+      </div>
+
       <!-- Main Character Stage: Draconia (Protagonist) + Scene Characters -->
       <div id="stage" class="stage" data-count="0">
+        <div id="duel-fx-layer" class="duel-fx-layer" aria-hidden="true">
+          <div id="duel-beam" class="duel-beam"></div>
+          <div id="duel-popup-left" class="duel-popup left"></div>
+          <div id="duel-popup-right" class="duel-popup right"></div>
+        </div>
         <div id="char-slot-draconia" class="vn-sprite draconia-protag speaking" title="Draconia">
           <img id="img-draconia-corner" src="assets/draconia.png" onerror="this.onerror=null;this.src='draconia.png'" alt="Draconia" />
         </div>
@@ -116,6 +155,13 @@
       <!-- Choices Overlay -->
       <div id="choices-container" class="choices-container" hidden></div>
 
+      <!-- Duel Victory / Defeat Overlay -->
+      <div id="duel-end-box" class="duel-end-box glass" hidden>
+        <h3 id="duel-end-title" class="duel-end-title">⚔️ DUEL VICTORY!</h3>
+        <p id="duel-end-body" class="duel-end-body"></p>
+        <button id="duel-end-btn" class="btn btn-primary">✨ Continue Story ▶</button>
+      </div>
+
       <!-- Classic VN Dialogue Box (DDLC-inspired layout) -->
       <div class="vn-dialogue-area">
         <div id="dialogue-box" class="vn-dialogue-box">
@@ -123,6 +169,14 @@
 
           <div class="vn-dialogue-body">
             <p id="dialogue-text" class="vn-dialogue-text"></p>
+          </div>
+
+          <!-- Tactical Spell Controls (only visible during active duel) -->
+          <div id="duel-controls" class="duel-controls" hidden>
+            <button id="duel-btn-attack" class="duel-spell-btn spell-attack"></button>
+            <button id="duel-btn-shield" class="duel-spell-btn spell-shield"></button>
+            <button id="duel-btn-break" class="duel-spell-btn spell-break"></button>
+            <button id="duel-btn-ult" class="duel-spell-btn spell-ult"></button>
           </div>
 
           <div class="vn-bottom-bar">
@@ -157,7 +211,7 @@
         </div>
         <div class="title-actions">
           <button id="btn-replay" class="btn btn-primary">🔄 Play Again</button>
-          <button id="btn-end-gallery" class="btn btn-secondary">🏆 View All 10 Timelines</button>
+          <button id="btn-end-gallery" class="btn btn-secondary">🏆 View All 5 Endings</button>
           <a id="btn-paypal-ending" class="btn btn-paypal" href="#" target="_blank" rel="noopener noreferrer">☕ Support via PayPal</a>
         </div>
       </main>
@@ -169,10 +223,10 @@
       <div class="title-overlay"></div>
       <main class="gallery-card glass">
         <div class="gallery-header">
-          <h2 id="gallery-title">🏆 Timelines Gallery (10)</h2>
+          <h2 id="gallery-title">🏆 Endings Gallery (5)</h2>
           <button id="btn-gallery-back" class="btn btn-ghost">Back</button>
         </div>
-        <button id="btn-jump-crossroads" class="btn btn-secondary" style="margin-bottom: 12px;" hidden>🧭 Jump to Chapter 3 Crossroads</button>
+        <button id="btn-jump-crossroads" class="btn btn-secondary" style="margin-bottom: 12px;" hidden>🧭 Jump to Episode 3 Crossroads</button>
         <div id="gallery-list" class="gallery-list"></div>
       </main>
     </section>
@@ -258,6 +312,7 @@
   <script src="story.js"></script>
   <script src="story-trunks.js"></script>
   <script src="story-timelines.js"></script>
+  <script src="duel.js"></script>
   <script src="game.js"></script>
 </body>
 </html>

@@ -45,22 +45,30 @@
     narrator: 'Narrator',
   };
 
-  const CHAR_NAMES_ES = {
-    severo: 'Profesor Severo',
-    minerba: 'Profesora Minerba',
-    remuz: 'Profesor Remuz',
-    pamona: 'Profesora Pamona',
-    albuz: 'Director Albuz',
-    thom: 'Lord Thom',
-    narrator: 'Narrador',
+  const CHAR_NAMES_BY_LANG = {
+    es: { severo: 'Profesor Severo', minerba: 'Profesora Minerba', remuz: 'Profesor Remuz', pamona: 'Profesora Pamona', albuz: 'Director Albuz', thom: 'Lord Thom', narrator: 'Narrador' },
+    pt: { severo: 'Prof. Severo', minerba: 'Profa. Minerba', remuz: 'Prof. Remuz', pamona: 'Profa. Pamona', albuz: 'Diretor Albuz', thom: 'Lord Thom', narrator: 'Narrador' },
+    fr: { severo: 'Prof. Severo', minerba: 'Prof. Minerba', remuz: 'Prof. Remuz', pamona: 'Prof. Pamona', albuz: 'Directeur Albuz', thom: 'Lord Thom', narrator: 'Narrateur' },
+    de: { severo: 'Prof. Severo', minerba: 'Prof. Minerba', remuz: 'Prof. Remuz', pamona: 'Prof. Pamona', albuz: 'Schulleiter Albuz', thom: 'Lord Thom', narrator: 'Erzähler' },
+    ja: { draconia: 'ドラコニア', harry: 'ハリー', hermiona: 'ハーミオナ', ronn: 'ロン', lune: 'ルネ', nevile: 'ネヴィル', severo: 'セヴェロ教授', minerba: 'ミネルバ教授', remuz: 'レムズ教授', pamona: 'パモナ教授', albuz: 'アルブズ校長', lucio: 'ルシオ卿', thom: 'トム卿', belatrix: 'ベラトリクス', barti: 'バルティ', piter: 'ピター', narrator: 'ナレーター' },
+    ko: { draconia: '드라코니아', harry: '해리', hermiona: '헤르미오나', ronn: '론', lune: '루네', nevile: '네빌', severo: '세베로 교수', minerba: '미네르바 교수', remuz: '레무즈 교수', pamona: '파모나 교수', albuz: '알부즈 교장', lucio: '루시오 경', thom: '로드 톰', belatrix: '벨라트릭스', barti: '바르티', piter: '피터', narrator: '내레이터' },
+    zh: { draconia: '德拉科尼亚', harry: '哈利', hermiona: '赫敏娜', ronn: '罗恩', lune: '卢娜', nevile: '纳威', severo: '塞维罗教授', minerba: '米勒娃教授', remuz: '雷姆斯教授', pamona: '帕莫娜教授', albuz: '阿布兹校长', lucio: '卢修斯勋爵', thom: '汤姆勋爵', belatrix: '贝拉特里克斯', barti: '巴蒂', piter: '彼得', narrator: '旁白' },
   };
 
   function getCharDisplayName(speaker) {
     if (!speaker || speaker === 'narrator') {
       return window.I18N?.ui?.[state.lang]?.narrator || 'Narrator';
     }
-    if (state.lang === 'es' && CHAR_NAMES_ES[speaker]) return CHAR_NAMES_ES[speaker];
+    const langMap = CHAR_NAMES_BY_LANG[state.lang];
+    if (langMap && langMap[speaker]) return langMap[speaker];
     return CHAR_NAMES[speaker] || speaker;
+  }
+
+  function detectInitialLang() {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved && window.I18N?.ui?.[saved]) return saved;
+    const nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
+    return window.I18N?.ui?.[nav] ? nav : 'en';
   }
 
   const state = {
@@ -82,9 +90,7 @@
     lastTickMs: null,
     adIntervalTimer: null,
     pendingAdBreak: false,
-    lang:
-      localStorage.getItem(LANG_KEY) ||
-      ((navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en'),
+    lang: detectInitialLang(),
   };
 
   const screens = {
@@ -1050,7 +1056,7 @@
   });
 
   function applyLanguage(lang) {
-    state.lang = lang === 'es' ? 'es' : 'en';
+    state.lang = window.I18N?.ui?.[lang] ? lang : 'en';
     localStorage.setItem(LANG_KEY, state.lang);
     const t = window.I18N.ui[state.lang];
     const totalEndings = Object.keys(window.STORY.endings).length;

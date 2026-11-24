@@ -67,8 +67,7 @@
   function detectInitialLang() {
     const saved = localStorage.getItem(LANG_KEY);
     if (saved && window.I18N?.ui?.[saved]) return saved;
-    const nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
-    return window.I18N?.ui?.[nav] ? nav : 'en';
+    return 'en';
   }
 
   const state = {
